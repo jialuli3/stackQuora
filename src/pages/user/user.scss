@@ -1,3 +1,16 @@
-page-user {
-
+.md{
+  page-user {
+    .follow{
+      font-size: 1.3em;
+    }
+    .followers{
+      font-size: 2em;
+    }
+  }
+  .questions{
+    color: #f7d185;
+  }
+  .upvotes{
+    color: #45e0e0;
+  }
 }

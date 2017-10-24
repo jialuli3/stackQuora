@@ -1,11 +1,49 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Me
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="profile">
+  <ion-card>
+    <ion-item>
+      <h2>My name</h2>
+      <p>My score: 1000</p>
+      <p>About: ACE411</p>
+      <ion-thumbnail item-start>
+        <img src='http://lorempixel.com/64/64/'/>
+      </ion-thumbnail>
+    </ion-item>
+  </ion-card>
+<ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <ion-icon class='followers' name='people'></ion-icon>
+        </ion-col>
+        <ion-col >
+          <font class='follow'>Followers 245</font>
+        </ion-col>
+        <ion-col>
+          <font class='follow'>Following 245</font>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-card>
+<ion-card>
+  <ion-item-group>
+     <ion-item>
+       <ion-icon class ="questions" name="star-outline" item-start ></ion-icon>
+       <ion-label>My Questions/Answers</ion-label>
+     </ion-item>
+     <ion-item>
+       <ion-icon class ="upvotes" name="thumbs-up" item-start ></ion-icon>
+       <ion-label>Upvoted Questions/Answers</ion-label>
+     </ion-item>
+   </ion-item-group>
+
+</ion-card>
 
 </ion-content>
