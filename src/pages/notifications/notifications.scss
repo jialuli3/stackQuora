@@ -1,3 +1,19 @@
-page-notifications {
-
+.md{
+  page-notifications {
+    .button{
+      text-align: center;
+      margin-left: 30%;
+      margin-right: 30%;
+      margin-top: 10px;
+    }
+    .noti_upvotes{
+      margin-left: 0%
+    }
+    .noti_comments{
+      margin-left: 0%
+    }
+    br {
+       margin: 300px 0;
+    }
+ }
 }

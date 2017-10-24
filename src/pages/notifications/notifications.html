@@ -1,17 +1,82 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Notifications
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<button ion-button round class='button'> Mark ALL Read </button>
+<ion-card>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src='http://lorempixel.com/64/64/'/>
+    </ion-avatar>
+    <h2> Author</h2>
+    <p>  Tags: ionic,Programming</p>
+  </ion-item>
+    <ion-card-content>
+      <b>A: Using node.js as a simple web server</b>
+      <p>
+      computer to a URL outside your firewall! Tons of uses. Massive speed up for hybrid mobile devs.
+      Cordova + Ionic Framework Developers Local server and auto refresh features are baked into the ionic … tool.
+      Just run ionic serve from your app folder. Even better ... ionic serve --lab to view auto refreshing side by
+       side views of both iOS and Android. …
+     </p>
+     </ion-card-content>
+     <ion-row>
+    <ion-col>
+      <button class ='noti_upvotes' ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>736 Upvotes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button class ='noti_comments' ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col item-end clear>
+      <br>
+      11 hours
+    </ion-col>
+  </ion-row>
+</ion-card>
+<ion-card>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src='http://lorempixel.com/64/64/'/>
+    </ion-avatar>
+    <h2> Author</h2>
+    <p>  tags: django,server</p>
+  </ion-item>
+    <ion-card-content>
+      <b>Q: DjangoCMS: disable login via http, force https</b>
+      <p>
+      Our DjangoCMS site is accessible via http and https. Anonymous usage via http is ok.
+      But I want to disable logins via http.
+      Is there a way to force the usage of https as soon as the user wants to ...
+     </p>
+     </ion-card-content>
+     <ion-row>
+    <ion-col>
+      <button class ='noti_upvotes' ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>40 Upvotes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button class ='noti_comments' ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>0 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col item-end clear>
+      <br>
+      13 hours
+    </ion-col>
+  </ion-row>
+</ion-card>
 </ion-content>
