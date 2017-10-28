@@ -3,15 +3,57 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+<ion-toolbar no-border-top>
+  <ion-searchbar></ion-searchbar>
+</ion-toolbar>
+<ion-toolbar>
+  <ion-segment>
+  <ion-segment-button>
+Recommendations
+</ion-segment-button>
+<ion-segment-button>
+Following
+</ion-segment-button>
+</ion-segment>
+</ion-toolbar>
+<ion-card>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src='http://lorempixel.com/64/64/'/>
+    </ion-avatar>
+    <h2> Author</h2>
+    <p>  Tags: ionic,Programming</p>
+  </ion-item>
+    <ion-card-content>
+      <b>A: Using node.js as a simple web server</b>
+      <p>
+      computer to a URL outside your firewall! Tons of uses. Massive speed up for hybrid mobile devs.
+      Cordova + Ionic Framework Developers Local server and auto refresh features are baked into the ionic … tool.
+      Just run ionic serve from your app folder. Even better ... ionic serve --lab to view auto refreshing side by
+       side views of both iOS and Android. …
+     </p>
+     <ion-note>11 hours</ion-note>
+     </ion-card-content>
+     <ion-row>
+    <ion-col>
+      <button class ='noti_upvotes' ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>736</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button class ='noti_upvotes' ion-button icon-left clear small>
+        <ion-icon name="thumbs-down"></ion-icon>
+        <div>23</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button class ='noti_comments' ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4</div>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
 </ion-content>

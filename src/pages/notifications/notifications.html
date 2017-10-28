@@ -1,20 +1,86 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Notifications
+    Following Updates
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-<button ion-button round class='button'> Mark ALL Read </button>
-<ion-card>
+    <ion-card *ngFor="let content of contents">
+    <ion-item>
+      <ion-row>
+        <ion-col col-auto>
+      <ion-avatar item-start>
+        <img src='http://lorempixel.com/64/64/'/>
+      </ion-avatar>
+    </ion-col>
+    <ion-col col-auto>
+      <h2> {{content.author}}</h2>
+      <p>reputation:{{content.reputation}}</p>
+    </ion-col>
+  <ion-col col-auto>
+      <img src='../assets/imgs/green_circle.png' class='unread'>
+  </ion-col>
+    </ion-row>
+    </ion-item>
+      <ion-card-content>
+        <b>{{content.type}}: {{content.title}}</b>
+        <p>
+        {{content.body}}
+       </p>
+        </ion-card-content>
+  <ion-grid>
+       <ion-row>
+      <!--  <ion-col col-auto>
+          <p class='tags'>Tags</p>
+        </ion-col>-->
+      <ion-col col-auto *ngFor="let tag of content.tags">
+       <button ion-button small outline color='green_l1'>{{tag}}</button>
+     </ion-col>
+     </ion-row>
+    <ion-row>
+      <ion-col col-2>
+        <button color='green_l1' ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{content.upvotes}}</div>
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button color='green_l1' ion-button icon-left clear small>
+          <ion-icon name="thumbs-down"></ion-icon>
+          <div>{{content.downvotes}}</div>
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button color='green_l1' ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{content.comments}}</div>
+        </button>
+      </ion-col>
+      <ion-col col-3>
+        <ion-note class='note' >{{content.posted_time}}</ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  </ion-card>
+<!--<ion-card>
   <ion-item>
+    <ion-row>
+      <ion-col col-auto>
     <ion-avatar item-start>
       <img src='http://lorempixel.com/64/64/'/>
     </ion-avatar>
+  </ion-col>
+  <ion-col col-auto>
     <h2> Author</h2>
-    <p>  Tags: ionic,Programming</p>
+    <p>Interested in: python/ionic/web</p>
+  </ion-col>
+<ion-col col-auto>
+    <img src='../assets/imgs/green_circle.png' class='unread'>
+</ion-col>
+  </ion-row>
   </ion-item>
     <ion-card-content>
       <b>A: Using node.js as a simple web server</b>
@@ -24,59 +90,44 @@
       Just run ionic serve from your app folder. Even better ... ionic serve --lab to view auto refreshing side by
        side views of both iOS and Android. …
      </p>
-     </ion-card-content>
+      </ion-card-content>
+<ion-grid>
      <ion-row>
-    <ion-col>
-      <button class ='noti_upvotes' ion-button icon-left clear small>
+    <ion-col col-auto>
+        <p class='tags'>Tags</p>
+      </ion-col>
+    <ion-col col-3>
+     <button ion-button small outline color='green_l1'>python</button>
+   </ion-col>
+   <ion-col col-2>
+    <button ion-button small outline color='green_l1'>ionic</button>
+  </ion-col>
+   </ion-row>
+  <ion-row>
+    <ion-col col-2>
+      <button color='green_l1' ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
-        <div>736 Upvotes</div>
+        <div>736</div>
       </button>
     </ion-col>
-    <ion-col>
-      <button class ='noti_comments' ion-button icon-left clear small>
+    <ion-col col-2>
+      <button color='green_l1' ion-button icon-left clear small>
+        <ion-icon name="thumbs-down"></ion-icon>
+        <div>23</div>
+      </button>
+    </ion-col>
+    <ion-col col-2>
+      <button color='green_l1' ion-button icon-left clear small>
         <ion-icon name="text"></ion-icon>
-        <div>4 Comments</div>
+        <div>4</div>
       </button>
     </ion-col>
-    <ion-col item-end clear>
-      <br>
-      11 hours
+    <ion-col col-3>
+      <ion-note class='note' >11 hours</ion-note>
     </ion-col>
   </ion-row>
-</ion-card>
-<ion-card>
-  <ion-item>
-    <ion-avatar item-start>
-      <img src='http://lorempixel.com/64/64/'/>
-    </ion-avatar>
-    <h2> Author</h2>
-    <p>  tags: django,server</p>
-  </ion-item>
-    <ion-card-content>
-      <b>Q: DjangoCMS: disable login via http, force https</b>
-      <p>
-      Our DjangoCMS site is accessible via http and https. Anonymous usage via http is ok.
-      But I want to disable logins via http.
-      Is there a way to force the usage of https as soon as the user wants to ...
-     </p>
-     </ion-card-content>
-     <ion-row>
-    <ion-col>
-      <button class ='noti_upvotes' ion-button icon-left clear small>
-        <ion-icon name="thumbs-up"></ion-icon>
-        <div>40 Upvotes</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button class ='noti_comments' ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>0 Comments</div>
-      </button>
-    </ion-col>
-    <ion-col item-end clear>
-      <br>
-      13 hours
-    </ion-col>
-  </ion-row>
-</ion-card>
+</ion-grid>
+
+</ion-card>-->
+
 </ion-content>

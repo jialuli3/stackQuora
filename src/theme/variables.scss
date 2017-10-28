@@ -38,7 +38,15 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  green_l5:   #f8fbf4,
+  green_l4:   #e8f3db,
+  green_l3:   #d1e7b7,
+  green_l2:   #b9db93,
+  green_l1:   #a2cf6f,
+  green_d1:   #7eb63d,
+  green_d2:   #70a236,
+  green_d3:   #628e2f
 );
 
 
@@ -52,9 +60,13 @@ $colors: (
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
-
-
+$toolbar-md-title-text-color: #7eb63d; //green_d1
+$toolbar-md-background: #f8fbf4;
+$tabs-md-tab-icon-color-active: #628e2f;
+$tabs-md-tab-icon-color: #b9db93;//l1
+$tabs-md-tab-text-color-active:#628e2f;
+$tabs-md-tab-text-color:#b9db93;
+$tabs-md-background: #f8fbf4;
 
 // App Windows Variables
 // --------------------------------------------------

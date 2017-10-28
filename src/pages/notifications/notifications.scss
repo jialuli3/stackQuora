@@ -1,19 +1,21 @@
 .md{
   page-notifications {
-    .button{
+    /*.button{
       text-align: center;
       margin-left: 30%;
       margin-right: 30%;
       margin-top: 10px;
+    }*/
+    .tags{
+      margin:8px 0px 0px 8px;
     }
-    .noti_upvotes{
-      margin-left: 0%
+    .note{
+      //margin:0px 0px 0px 8px;
+      vertical-align:text-bottom;
+      line-height:35px;
     }
-    .noti_comments{
-      margin-left: 0%
-    }
-    br {
-       margin: 300px 0;
+    .unread{
+      padding:0px,0px,0px,20px;
     }
  }
 }
