@@ -15,14 +15,18 @@
         <img src='http://lorempixel.com/64/64/'/>
       </ion-avatar>
     </ion-col>
-    <ion-col col-auto>
-      <h2> {{content.author}}</h2>
+    <ion-col col-5>
+      <p>{{content.author}}</p>
       <p>reputation: {{content.reputation}}</p>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button small outline color='green_l1'>UNFOLLOW</button>
     </ion-col>
   <!--<ion-col col-offset-lg>
       <img src='../assets/imgs/green_circle.png' class='unread'>
   </ion-col>-->
     </ion-row>
+
     </ion-item>
       <ion-card-content>
         <div [ngSwitch]='content.type'>
