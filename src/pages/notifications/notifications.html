@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let content of contents">
+    <ion-card  *ngFor="let content of contents" (click)="displayQuestion()">
     <ion-item>
       <ion-row>
         <ion-col col-auto>
@@ -17,14 +17,18 @@
     </ion-col>
     <ion-col col-auto>
       <h2> {{content.author}}</h2>
-      <p>reputation:{{content.reputation}}</p>
+      <p>reputation: {{content.reputation}}</p>
     </ion-col>
-  <ion-col col-auto>
+  <!--<ion-col col-offset-lg>
       <img src='../assets/imgs/green_circle.png' class='unread'>
-  </ion-col>
+  </ion-col>-->
     </ion-row>
     </ion-item>
       <ion-card-content>
+        <div [ngSwitch]='content.type'>
+        <ion-note *ngSwitchCase="'Q'">{{content.author}} {{content.activity}} a question.</ion-note>
+        <ion-note *ngSwitchCase="'A'">{{content.author}} {{content.activity}} an answer.</ion-note>
+      </div>
         <b>{{content.type}}: {{content.title}}</b>
         <p>
         {{content.body}}
@@ -63,8 +67,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  </ion-card>
+</ion-card>
 <!--<ion-card>
   <ion-item>
     <ion-row>

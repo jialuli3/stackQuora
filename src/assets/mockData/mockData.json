@@ -1,10 +1,10 @@
 {
 "contents":[
-{"author":"oscilatingcretin","reputation":"3331","title":"Proper method of navigation to generically-defined entity","type":"Q","body":"Proper method of navigation to generically-defined entity I have an parent entity that has a one-to-one relationship to multiple possible tables (FK is on child tables). Because the navigation property to the child is defined by an interface, I have no ...",
-"upvotes":9,"downvotes":0,"comments":1,"tags":["entity-framework","abstract-class","relationship"],"posted_time":"12 hours"},
+{"author":"Pablo","reputation":"92.5k","title":"How to have per-thread but reusable objects (PubNub) in a Spring app?","type":"Q","body":"I'm connecting to PubNub in a Spring Boot application. From the documentation, it's ok to re-use PubNub objects but it's better to have one per thread. What's the appropriate method to store and ...",
+"upvotes":9,"downvotes":0,"comments":4,"tags":["spring","spring-boot","pubnub"],"posted_time":"4 hours","activity":"posted"},
 {"author":"Praveen Gowda I V","reputation":"5321","title":"How to prevent ARSCNView from rotating during orientation change","type":"A","body":"I am using ARKit and I want to allow the users to use the app in both portrait and landscape mode. I would like all UI controls to rotate on orientation change except for the ARSCNView. I tried to ...",
-"upvotes":77,"downvotes":2,"comments":1,"tags":["ios","arkit","arcnview"],"posted_time":"13 hours"},
-{"author":"yavg","reputation":"475","title":"Using d3.js, how can I display data faster on my chart?","type":"Q","body":"In my code, I am loading a JSON of 508 elements on a line chart. This JSON contains data emitted by some machines, and the keys are the names of the machines. This is the structure of my JSON: { ...",
-"upvotes":9,"downvotes":0,"comments":1,"tags":["javascript","dj.3s","java"],"posted time": "15 hours"}
+"upvotes":77,"downvotes":2,"comments":1,"tags":["ios","arkit","arcnview"],"posted_time":"13 hours","activity":"upvoted"},
+{"author":"yavg","reputation":"475","title":"Using d3.js, how can I display data faster on my chart?","type":"A","body":"In my code, I am loading a JSON of 508 elements on a line chart. This JSON contains data emitted by some machines, and the keys are the names of the machines. This is the structure of my JSON: { ...",
+"upvotes":9,"downvotes":0,"comments":1,"tags":["javascript","dj.3s","java"],"posted time": "15 hours","activity":"answered"}
 ]
 }

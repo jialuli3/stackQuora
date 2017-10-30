@@ -15,11 +15,9 @@ export class StackMockProvider {
     //console.log('Hello StackMockProvider Provider');
   }
   public load(){
-  this.http.get('assets/mockData/mockData.json').map(res => res.json()).subscribe(data => {
-          //this.contents = data.contents;
-          console.log(data.contents);
-          return data.contents;
-        });
-
-   }
+    return this.http.get('assets/mockData/mockData.json').map(res => res.json());
+  }
+   /*public get_contents(){
+     return this.contents;
+   }*/
 }
