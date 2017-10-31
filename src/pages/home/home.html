@@ -4,26 +4,41 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-<ion-toolbar no-border-top>
+<!--<ion-toolbar no-border-top>
   <ion-searchbar></ion-searchbar>
-</ion-toolbar>
+</ion-toolbar>-->
 <ion-toolbar>
   <ion-segment>
   <ion-segment-button>
-Recommendations
+<button ion-button icon-start clear color='green_d1'>
+<ion-icon name='search'></ion-icon>
+Search
+</button>
 </ion-segment-button>
 <ion-segment-button>
-Following
+  <button ion-button icon-start clear color='green_d1' (click)="askQuestion()">
+  <ion-icon name='help'></ion-icon>
+  ASK
+  </button>
 </ion-segment-button>
 </ion-segment>
 </ion-toolbar>
 <ion-card>
   <ion-item>
+    <ion-row>
+      <ion-col col-auto>
     <ion-avatar item-start>
       <img src='http://lorempixel.com/64/64/'/>
     </ion-avatar>
+  </ion-col>
+  <ion-col col-auto>
     <h2> Author</h2>
-    <p>  Tags: ionic,Programming</p>
+    <p>Interested in: python/ionic/web</p>
+  </ion-col>
+<ion-col col-auto>
+    <img src='../assets/imgs/green_circle.png' class='unread'>
+</ion-col>
+  </ion-row>
   </ion-item>
     <ion-card-content>
       <b>A: Using node.js as a simple web server</b>
@@ -33,27 +48,40 @@ Following
       Just run ionic serve from your app folder. Even better ... ionic serve --lab to view auto refreshing side by
        side views of both iOS and Android. …
      </p>
-     <ion-note>11 hours</ion-note>
-     </ion-card-content>
+      </ion-card-content>
+<ion-grid>
      <ion-row>
-    <ion-col>
-      <button class ='noti_upvotes' ion-button icon-left clear small>
+    <ion-col col-3>
+     <button ion-button small outline color='green_l1'>python</button>
+   </ion-col>
+   <ion-col col-2>
+    <button ion-button small outline color='green_l1'>ionic</button>
+  </ion-col>
+   </ion-row>
+  <ion-row>
+    <ion-col col-2>
+      <button color='green_l1' ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
         <div>736</div>
       </button>
     </ion-col>
-    <ion-col>
-      <button class ='noti_upvotes' ion-button icon-left clear small>
+    <ion-col col-2>
+      <button color='green_l1' ion-button icon-left clear small>
         <ion-icon name="thumbs-down"></ion-icon>
         <div>23</div>
       </button>
     </ion-col>
-    <ion-col>
-      <button class ='noti_comments' ion-button icon-left clear small>
+    <ion-col col-2>
+      <button color='green_l1' ion-button icon-left clear small>
         <ion-icon name="text"></ion-icon>
         <div>4</div>
       </button>
     </ion-col>
+    <ion-col col-3>
+      <ion-note class='unread' >11 hours</ion-note>
+    </ion-col>
   </ion-row>
+</ion-grid>
+
 </ion-card>
 </ion-content>
