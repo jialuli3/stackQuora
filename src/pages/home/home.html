@@ -23,7 +23,7 @@ Search
 </ion-segment-button>
 </ion-segment>
 </ion-toolbar>
-<ion-card  *ngFor="let content of contents" >
+<ion-card  *ngFor="let content of contents; let i=index" >
 <ion-item>
   <ion-row>
     <ion-col col-auto>
@@ -47,7 +47,7 @@ Search
 </ion-row>
 
 </ion-item>
-  <ion-card-content (click)="displayQuestion()">
+  <ion-card-content (click)="displayQuestion(i)">
     <div [ngSwitch]='content.type'>
     <ion-note *ngSwitchCase="'Q'">{{content.author}} {{content.activity}} a question.</ion-note>
     <ion-note *ngSwitchCase="'A'">{{content.author}} {{content.activity}} an answer.</ion-note>
@@ -68,15 +68,15 @@ Search
  </ion-row>
 <ion-row>
   <ion-col col-2>
-    <button (click)="upvoted()" [color]="up_buttonColor" ion-button icon-left clear small >
+    <button (click)="upvoted(i)" [color]="up_buttonColor[i]" ion-button icon-left clear small >
       <ion-icon name="thumbs-up"></ion-icon>
-      <div>{{content.upvotes+upvote_add}}</div>
+      <div>{{upvotes_without_user[i]+upvote_add[i]}}</div>
     </button>
   </ion-col>
   <ion-col col-2>
-    <button (click)="downvoted()"  [color]="down_buttonColor" color='green_l1' ion-button icon-left clear small>
+    <button (click)="downvoted(i)"  [color]="down_buttonColor[i]" color='green_l1' ion-button icon-left clear small>
       <ion-icon name="thumbs-down"></ion-icon>
-      <div>{{content.downvotes+downvote_min}}</div>
+      <div>{{downvotes_without_user[i]+downvote_min[i]}}</div>
     </button>
   </ion-col>
   <ion-col col-2>

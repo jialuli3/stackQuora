@@ -14,8 +14,12 @@ export class StackMockProvider {
   constructor(public http: Http) {
     //console.log('Hello StackMockProvider Provider');
   }
-  public load(){
+  public load_contents(){
     return this.http.get('assets/mockData/mockData.json').map(res => res.json());
+  }
+  public load_user_profile(){
+    return this.http.get('assets/mockData/user_profile.json').map(res => res.json());
+
   }
    /*public get_contents(){
      return this.contents;
