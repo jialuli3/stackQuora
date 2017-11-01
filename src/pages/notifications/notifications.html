@@ -20,8 +20,11 @@
       <p>reputation: {{content.reputation}}</p>
     </ion-col>
     <ion-col col-2>
-      <button ion-button small outline color='green_l1'>UNFOLLOW</button>
-    </ion-col>
+      <div [ngSwitch]='content.following'>
+        <button *ngSwitchCase="'y'" ion-button small outline color='green_l1'>UNFOLLOW</button>
+        <button *ngSwitchCase="'n'" ion-button small color='green_l1'>FOLLOW</button>
+    </div>
+      </ion-col>
   <!--<ion-col col-offset-lg>
       <img src='../assets/imgs/green_circle.png' class='unread'>
   </ion-col>-->

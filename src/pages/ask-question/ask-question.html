@@ -18,18 +18,24 @@
       <ion-input></ion-input>
     </ion-item>
     <ion-item no-lines>
-    <textarea rows='20' cols='30.5' padding>
-    </textarea>
+      <ion-label color="green_l1" stacked>Descriptions</ion-label>
   </ion-item>
+  <ion-item no-lines>
+  <textarea rows='15' cols='30.5' padding>
+  </textarea>
+  <ion-row no-lines>
+    <button ion-button clear small color='green_l1'><div>Tags(select up to three tags):</div></button>
+  </ion-row>
+</ion-item>
   <ion-row>
-    <ion-col col-auto>
-      <button ion-button>submit</button>
+    <ion-col col-4.5>
+      <button ion-button small color='green_l1' outline>submit</button>
     </ion-col>
-    <ion-col col-auto>
-      <button ion-button>save</button>
+    <ion-col col-3.5>
+      <button ion-button small color='green_l1' outline >save</button>
     </ion-col>
-    <ion-col col-auto>
-      <button ion-button>cancel</button>
+    <ion-col col-4>
+      <button ion-button small color='green_l1' outline>cancel</button>
     </ion-col>
   </ion-row>
 
