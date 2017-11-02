@@ -10,6 +10,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DisplayQuestionPage } from '../pages/display-question/display-question';
 import { AskQuestionPage } from '../pages/ask-question/ask-question';
+import { UserLoginPage } from '../pages/user-login/user-login';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StackMockProvider } from '../providers/stack-mock/stack-mock';
@@ -22,7 +24,8 @@ import { StackMockProvider } from '../providers/stack-mock/stack-mock';
     HomePage,
     TabsPage,
     DisplayQuestionPage,
-    AskQuestionPage
+    AskQuestionPage,
+    UserLoginPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { StackMockProvider } from '../providers/stack-mock/stack-mock';
     HomePage,
     TabsPage,
     DisplayQuestionPage,
-    AskQuestionPage
+    AskQuestionPage,
+    UserLoginPage
   ],
   providers: [
     StatusBar,
