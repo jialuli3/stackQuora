@@ -7,19 +7,28 @@
 <!--<ion-toolbar no-border-top>
   <ion-searchbar></ion-searchbar>
 </ion-toolbar>-->
+<ion-toolbar color='green_l2'>
+  <ion-searchbar ></ion-searchbar>
+</ion-toolbar>
 <ion-toolbar>
-  <ion-segment>
-  <ion-segment-button>
+  <ion-segment color='green_d1'>
+  <!--<ion-segment-button>
 <button ion-button icon-start clear color='green_d1'>
 <ion-icon name='search'></ion-icon>
 Search
 </button>
+</ion-segment-button>-->
+<ion-segment-button (click)="askQuestion()">
+  <!--<button ion-button icon-start clear color='green_d1' (click)="askQuestion()"></button>-->
+ASK
 </ion-segment-button>
 <ion-segment-button>
-  <button ion-button icon-start clear color='green_d1' (click)="askQuestion()">
-  <ion-icon name='help'></ion-icon>
-  ASK
-  </button>
+  <!--<button ion-button color='green_d1' clear></button>-->
+  recommended
+</ion-segment-button>
+<ion-segment-button>
+  <!--<button ion-button color='green_d1' clear></button>-->
+  My Questions
 </ion-segment-button>
 </ion-segment>
 </ion-toolbar>

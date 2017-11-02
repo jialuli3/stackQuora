@@ -10,4 +10,7 @@ import { AskQuestionPage } from './ask-question';
     IonicPageModule.forChild(AskQuestionPage),
   ],
 })
-export class AskQuestionPageModule {}
+export class AskQuestionPageModule {
+  
+
+}

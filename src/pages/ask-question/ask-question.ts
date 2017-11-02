@@ -16,11 +16,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AskQuestionPage {
 
+  question:any;
+  descriptions:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AskQuestionPage');
   }
-
+  submitQuestion(){
+    //post to url
+    this.navCtrl.pop()
+  }
+  saveQuestion(){
+    //post to url to save questions
+  }
+  cancelQuestion(){
+    //post to url to save questions
+    this.navCtrl.pop()
+  }
 }
