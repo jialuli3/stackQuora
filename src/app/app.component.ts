@@ -12,10 +12,10 @@ import { UserLoginPage } from '../pages/user-login/user-login';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = TabsPage;
+  rootPage:any = TabsPage;
   //rootPage:any= DisplayQuestionPage;
   //rootPage:any = AskQuestionPage;
-  rootPage:any = UserLoginPage;
+  //rootPage:any = UserLoginPage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
