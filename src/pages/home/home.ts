@@ -25,8 +25,8 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    console.log("loaded");
     this.mockData.load_contents().subscribe(data=>{
+      console.log("loaded content");
       this.contents=data.contents;
       this.voted_status=data.voted_status;
       console.log(this.voted_status)

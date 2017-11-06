@@ -45,10 +45,11 @@ ASK
   <p>reputation: {{content.reputation}}</p>
 </ion-col>
 <ion-col col-2>
-  <div [ngSwitch]='content.following'>
+  <!--<div [ngSwitch]='content.following'>
     <button *ngSwitchCase="'y'" ion-button small outline color='green_l1'>UNFOLLOW</button>
     <button *ngSwitchCase="'n'" ion-button small outline color='green_l1'>FOLLOW</button>
-</div>
+</div>-->
+<button ion-button small outline color='green_l1'>FOLLOW</button>
 </ion-col>
 <!--<ion-col col-offset-lg>
   <img src='../assets/imgs/green_circle.png' class='unread'>
@@ -57,11 +58,13 @@ ASK
 
 </ion-item>
   <ion-card-content (click)="displayQuestion(i)">
-    <div [ngSwitch]='content.type'>
+    <!--<div [ngSwitch]='content.type'>
     <ion-note *ngSwitchCase="'Q'">{{content.author}} {{content.activity}} a question.</ion-note>
     <ion-note *ngSwitchCase="'A'">{{content.author}} {{content.activity}} an answer.</ion-note>
-  </div>
-    <b>{{content.type}}: {{content.title}}</b>
+  </div>-->
+  <ion-note>{{content.author}} posted a question</ion-note><br>
+    <!--<b>{{content.type}}: {{content.title}}</b>-->
+    <b>Q:{{content.title}}</b>
     <p>
     {{content.body.substring(0,200)}}...
    </p>
