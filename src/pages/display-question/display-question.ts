@@ -14,12 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'display-question.html',
 })
 export class DisplayQuestionPage {
-
+  content :any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DisplayQuestionPage');
+    this.content=this.navParams.get('data');
+    console.log(this.content);
   }
 
 }

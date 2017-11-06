@@ -41,7 +41,7 @@ ASK
   </ion-avatar>
 </ion-col>
 <ion-col col-5>
-  <p>{{content.author}}</p>
+  <p>{{content.owneruserid}}</p>
   <p>reputation: {{content.reputation}}</p>
 </ion-col>
 <ion-col col-2>
@@ -62,12 +62,11 @@ ASK
     <ion-note *ngSwitchCase="'Q'">{{content.author}} {{content.activity}} a question.</ion-note>
     <ion-note *ngSwitchCase="'A'">{{content.author}} {{content.activity}} an answer.</ion-note>
   </div>-->
-  <ion-note>{{content.author}} posted a question</ion-note><br>
+  <ion-note>{{content.owneruserid}} posted a question</ion-note><br>
     <!--<b>{{content.type}}: {{content.title}}</b>-->
     <b>Q:{{content.title}}</b>
-    <p>
-    {{content.body.substring(0,200)}}...
-   </p>
+   <div [innerHTML] ="content.body.substring(0,200)+'...'"></div>
+
     </ion-card-content>
 <ion-grid>
    <ion-row>
@@ -97,8 +96,8 @@ ASK
       <div>{{content.comments}}</div>
     </button>
   </ion-col>
-  <ion-col col-3>
-    <ion-note class='note' >{{content.posted_time}}</ion-note>
+  <ion-col col-auto>
+    <ion-note class='note' >{{content.creationdate}}</ion-note>
   </ion-col>
 </ion-row>
 </ion-grid>

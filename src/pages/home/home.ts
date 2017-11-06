@@ -105,8 +105,10 @@ export class HomePage {
     }//deselct downvotes
   }
 
-  displayQuestion(){
-      this.navCtrl.push(DisplayQuestionPage);
+  displayQuestion(i){
+      this.navCtrl.push(DisplayQuestionPage,{
+        data:this.contents[i]
+      });
   }
   askQuestion(){
       this.navCtrl.push(AskQuestionPage);

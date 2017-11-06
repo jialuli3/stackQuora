@@ -6,7 +6,7 @@
 -->
 <ion-content>
 
-  <ion-card>
+  <ion-card >
     <ion-item>
       <ion-row>
         <ion-col col-auto>
@@ -15,11 +15,11 @@
       </ion-avatar>
     </ion-col>
     <ion-col col-5>
-      <h2> Author</h2>
-      <p>Reputations:52.9k</p>
+      <h2> {{content.owneruserid}}</h2>
+      <p>Reputations:{{content.reputation}}</p>
     </ion-col>
     <ion-col col-3>
-      <button ion-button small color='green_l1'>FOLLOW</button>
+      <button ion-button small outline color='green_l1'>FOLLOW</button>
     </ion-col>
     </ion-row>
 
@@ -87,7 +87,7 @@
     <ion-card-content>
 
       <p>
-        
+
      </p>
       </ion-card-content>
 <ion-grid>
