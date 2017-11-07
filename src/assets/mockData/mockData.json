@@ -9,3 +9,19 @@
 ],
 "voted_status":[1,0,-1]
 }
+{
+  "question":{"qid":"1234","author":"Pablo","reputation":"92.5k","title":"How to have per-thread but reusable objects (PubNub) in a Spring app?","body":"I'm connecting to PubNub in a Spring Boot application. From the documentation, it's ok to re-use PubNub objects but it's better to have one per thread. What's the appropriate method to store and ...",
+  "upvotes":9,"downvotes":0,"tags":["spring","spring-boot","pubnub"],"creationdate":"2015-3-1  06:35","following":"y"}
+   }
+}
+{
+  "answers":[{
+    "aid":"345","author":"XYZ","reputation":"92.5k","body":"In my code, I am loading a JSON of 508 elements on a line chart. This JSON contains data emitted by some machines,",
+    "upvotes":9,"downvotes":0, "creationdate":"2015-3-1  07:35","following":"y"
+  }
+  {
+    "aid":"456","author":"XYZ","reputation":"92.5k","body":"In my code, I am loading a JSON of 508 elements on a line chart. This JSON contains data emitted by some machines,",
+    "upvotes":9,"downvotes":0, "creationdate":"2015-3-1  07:35","following":"y"
+  }
+  ]
+}

@@ -32,6 +32,7 @@ ASK
 </ion-segment-button>
 </ion-segment>
 </ion-toolbar>
+
 <ion-card  *ngFor="let content of contents; let i=index" >
 <ion-item>
   <ion-row>
@@ -65,7 +66,7 @@ ASK
   <ion-note>{{content.owneruserid}} posted a question</ion-note><br>
     <!--<b>{{content.type}}: {{content.title}}</b>-->
     <b>Q:{{content.title}}</b>
-   <div [innerHTML] ="content.body.substring(0,200)+'...'"></div>
+   <div  [innerHTML] ="content.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
 
     </ion-card-content>
 <ion-grid>
