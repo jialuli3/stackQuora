@@ -11,6 +11,7 @@ import { StackMockProvider} from '../../providers/stack-mock/stack-mock'
 export class HomePage {
   contents: any;
   voted_status: any;
+  home_display: any;
   upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   up_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
@@ -25,6 +26,7 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
+    this.home_display="my_questions";
     this.mockData.load_contents().subscribe(data=>{
       console.log("loaded content");
       this.contents=data.contents;

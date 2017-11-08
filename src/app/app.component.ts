@@ -7,12 +7,15 @@ import { AskQuestionPage } from '../pages/ask-question/ask-question';
 import { DisplayQuestionPage } from '../pages/display-question/display-question';
 import { TabsPage } from '../pages/tabs/tabs';
 import { UserLoginPage } from '../pages/user-login/user-login';
+import { UserPage } from '../pages/user/user';
+import { MyQuestionsAnswersPage} from '../pages/my-questions-answers/my-questions-answers';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  //rootPage:any = TabsPage;
+  rootPage:any = MyQuestionsAnswersPage;
   //rootPage:any= DisplayQuestionPage;
   //rootPage:any = AskQuestionPage;
   //rootPage:any = UserLoginPage;

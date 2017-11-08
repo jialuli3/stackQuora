@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 
 /**
@@ -21,7 +22,8 @@ export class AskQuestionPage {
   descriptions:any;
   tags:any;
   date:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  tags_array:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -30,19 +32,33 @@ export class AskQuestionPage {
   submitQuestion(){
     let headers= new Headers();
     headers.append('Content-Type','application/json');
-    this.date=new Date().toISOString();
+    this.date=new Date().toISOString().split('T');
+    this.date=this.date[0]+" "+this.date[1].slice(0,8);
+    console.log(this.date)
+    if((typeof this.question==="undefined") || (typeof this.descriptions==="undefined")){
+      this.presentAlert();
+      return;
+    }
 
+    if(typeof this.tags!=="undefined"){
+      this.tags_array=this.tags.split(",");
+      //console.log(tags_array)
+    }
+    else{
+      this.tags_array="[]"
+      //this.presentAlert()
+    }
     let body={
       userID:"1234",
       title:this.question,
       body:this.descriptions,
-      tags:this.tags,
+      tags:this.tags_array,
       posted_time:this.date
     };
     //post to url
     //this.http.post("",JSON.stringify(body),{headers:headers}).map(res=>res.json()).subscribe(data=>{});
     console.log(JSON.stringify(body))
-    //this.navCtrl.pop()
+    this.navCtrl.pop()
   }
   saveQuestion(){
     //post to url to save questions
@@ -51,4 +67,12 @@ export class AskQuestionPage {
     //post to url to save questions
     this.navCtrl.pop()
   }
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    message: 'Title/descriptions of the question cannot be empty.',
+    buttons: ['OK'],
+  });
+  alert.present();
+}
+
 }
