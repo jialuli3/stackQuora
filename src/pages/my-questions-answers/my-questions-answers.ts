@@ -29,7 +29,7 @@ export class MyQuestionsAnswersPage {
   }
   show_deletion(){
     console.log("show deletion")
-    if(this.hide_trash_button==true){
+    if(this.hide_trash_button===true){
       this.hide_trash_button=false;
     }
     else{

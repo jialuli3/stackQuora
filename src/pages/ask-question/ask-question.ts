@@ -32,8 +32,10 @@ export class AskQuestionPage {
   submitQuestion(){
     let headers= new Headers();
     headers.append('Content-Type','application/json');
-    this.date=new Date().toISOString().split('T');
-    this.date=this.date[0]+" "+this.date[1].slice(0,8);
+    //this.date=(new Date().getTimezoneOffset()).toISOString()).split('T');
+    let tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    let localISOTime = (new Date(Date.now() - tzoffset)).toISOString().split('T');
+    this.date=localISOTime[0]+" "+localISOTime[1].slice(0,8);
     console.log(this.date)
     if((typeof this.question==="undefined") || (typeof this.descriptions==="undefined")){
       this.presentAlert();

@@ -14,8 +14,8 @@ import { MyQuestionsAnswersPage} from '../pages/my-questions-answers/my-question
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = TabsPage;
-  rootPage:any = MyQuestionsAnswersPage;
+  rootPage:any = TabsPage;
+  //rootPage:any = MyQuestionsAnswersPage;
   //rootPage:any= DisplayQuestionPage;
   //rootPage:any = AskQuestionPage;
   //rootPage:any = UserLoginPage;

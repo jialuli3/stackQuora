@@ -18,9 +18,9 @@ export class StackMockProvider {
     //console.log('Hello StackMockProvider Provider');
   }
   public load_contents(){
-    return this.http.get('assets/mockData/mockData.json').map(res => res.json());
+    //return this.http.get('assets/mockData/mockData.json').map(res => res.json());
     //return this.http.get(vm+'/utilities/userUpdateRandom',{headers:headers}).map(res=>res.json());
-    //return this.http.get(vm+'/utilities/userUpdateRandom').map(res=>res.json());//the one works
+    return this.http.get(vm+'/utilities/userUpdateRandom').map(res=>res.json());//the one works
   }
   public load_user_profile(){
     return this.http.get('assets/mockData/user_profile.json').map(res => res.json());

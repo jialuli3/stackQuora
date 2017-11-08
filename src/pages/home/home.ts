@@ -28,7 +28,7 @@ export class HomePage {
   ionViewDidLoad(){
     this.home_display="my_questions";
     this.mockData.load_contents().subscribe(data=>{
-      console.log("loaded content");
+      console.log(data);
       this.contents=data.contents;
       this.voted_status=data.voted_status;
       console.log(this.voted_status)
