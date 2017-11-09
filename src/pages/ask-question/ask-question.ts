@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-
+import { Http,Headers } from '@angular/http';
 
 /**
  * Generated class for the AskQuestionPage page.
@@ -23,7 +23,7 @@ export class AskQuestionPage {
   tags:any;
   date:any;
   tags_array:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,public http: Http) {
   }
 
   ionViewDidLoad() {
@@ -58,7 +58,7 @@ export class AskQuestionPage {
       posted_time:this.date
     };
     //post to url
-    //this.http.post("",JSON.stringify(body),{headers:headers}).map(res=>res.json()).subscribe(data=>{});
+    this.http.post("",JSON.stringify(body),{headers:headers}).map(res=>res.json()).subscribe(data=>{});
     console.log(JSON.stringify(body))
     this.navCtrl.pop()
   }

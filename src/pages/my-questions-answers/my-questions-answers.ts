@@ -15,14 +15,14 @@ import { StackMockProvider} from '../../providers/stack-mock/stack-mock'
   templateUrl: 'my-questions-answers.html',
 })
 export class MyQuestionsAnswersPage {
-  hide_trash_button:false;
+  hide_trash_button:boolean=false;
   contents: any;
   hide_post:Array<boolean> =[false,false,false,false,false,false,false,false,false,false];
   constructor(public navCtrl: NavController, public navParams: NavParams,public mockData: StackMockProvider) {
   }
 
   ionViewDidLoad() {
-    this.mockData.load_contents().subscribe(data=>{
+    this.mockData.getUserTimeline().subscribe(data=>{
       this.contents=data.contents;
       console.log(this.contents)
     });

@@ -27,7 +27,7 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.home_display="my_questions";
-    this.mockData.load_contents().subscribe(data=>{
+    this.mockData.getUserTimeline().subscribe(data=>{
       console.log(data);
       this.contents=data.contents;
       this.voted_status=data.voted_status;
@@ -109,7 +109,7 @@ export class HomePage {
 
   displayQuestion(i){
       this.navCtrl.push(DisplayQuestionPage,{
-        data:this.contents[i]
+        data:JSON.stringify(this.contents[i].qID)
       });
   }
   askQuestion(){

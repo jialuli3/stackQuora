@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { StackMockProvider} from '../../providers/stack-mock/stack-mock'
 
 /**
  * Generated class for the DisplayQuestionPage page.
@@ -14,14 +15,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'display-question.html',
 })
 export class DisplayQuestionPage {
-  content :any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  question :any;
+  answers: any;
+  qid: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DisplayQuestionPage');
-    this.content=this.navParams.get('data');
-    console.log(this.content);
+    this.qid=this.navParams.get('data');
+    console.log(this.qid);
+    this.content=this.mockData.displayQuestionAnswers(this.qid,1).subscribe(data=>{
+      this.question=data.question;
+      this.answers=data.answers;
+      //console.log(data);
+      console.log("question",this.question);
+      console.log("answers",this.answers);
+    });
   }
 
 }

@@ -7,7 +7,7 @@
 <ion-content>
 
   <ion-card >
-    <ion-item>
+    <ion-item >
       <ion-row>
         <ion-col col-auto>
       <ion-avatar item-start>
@@ -15,8 +15,8 @@
       </ion-avatar>
     </ion-col>
     <ion-col col-5>
-      <h2> {{content.owneruserid}}</h2>
-      <p>Reputations:{{content.reputation}}</p>
+      <h2> {{question?.authorName}}</h2>
+      <p>Reputations:{{question?.reputation}}</p>
     </ion-col>
     <ion-col col-3>
       <button ion-button small outline color='green_l1'>FOLLOW</button>
@@ -25,35 +25,28 @@
 
     </ion-item>
       <ion-card-content>
-        <ion-note>XXX posted 11h ago</ion-note>
-        <h1>Question: Using node.js as a simple web server</h1>
-        <p>
-        computer to a URL outside your firewall! Tons of uses. Massive speed up for hybrid mobile devs.
-        Cordova + Ionic Framework Developers Local server and auto refresh features are baked into the ionic … tool.
-        Just run ionic serve from your app folder. Even better ... ionic serve --lab to view auto refreshing side by
-         side views of both iOS and Android.
-       </p>
+        <ion-note> {{question?.posted_time}}</ion-note>
+        <h1>Question: {{question?.title}}</h1>
+        <div  [innerHTML] ="question?.body" style="white-space: pre-wrap;"></div>
+
         </ion-card-content>
   <ion-grid>
     <ion-row>
-   <ion-col col-3>
-    <button ion-button small outline color='green_l1'>python</button>
-  </ion-col>
-  <ion-col col-2>
-   <button ion-button small outline color='green_l1'>ionic</button>
- </ion-col>
+      <ion-col col-auto *ngFor="let tag of question?.tags">
+       <button ion-button small outline color='green_l1'>{{tag}}</button>
+     </ion-col>
   </ion-row>
     <ion-row>
       <ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>736</div>
+          <div>{{question?.upvotes}}</div>
         </button>
       </ion-col>
       <ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="thumbs-down"></ion-icon>
-          <div>23</div>
+          <div>{{question?.downvotes}}</div>
         </button>
       </ion-col>
       <ion-col col-auto>
@@ -65,6 +58,7 @@
     </ion-row>
   </ion-grid>
 <ion-item-divider></ion-item-divider>
+<div *ngFor="let answer of answers">
   <ion-item >
     <ion-row>
       <ion-col col-auto>
@@ -73,8 +67,8 @@
     </ion-avatar>
   </ion-col>
   <ion-col col-5>
-    <h2> Author</h2>
-    <p>Reputations:52.9k</p>
+    <h2>{{answer.authorName}}</h2>
+    <p>Reputations:{{answer.reputation}}</p>
   </ion-col>
   <ion-col col-3>
     <button ion-button small color='green_l1'>FOLLOW</button>
@@ -86,27 +80,26 @@
 
     <ion-card-content>
 
-      <p>
+      <div  [innerHTML] ="answer?.body" style="white-space: pre-wrap;"></div>
 
-     </p>
       </ion-card-content>
 <ion-grid>
   <ion-row>
     <ion-col col-2>
       <button color='green_l1' ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
-        <div>736</div>
+        <div>{{answer.upvotes}}</div>
       </button>
     </ion-col>
     <ion-col col-2>
       <button color='green_l1' ion-button icon-left clear small>
         <ion-icon name="thumbs-down"></ion-icon>
-        <div>23</div>
+        <div>{{answer.downvotes}}</div>
       </button>
     </ion-col>
   </ion-row>
 </ion-grid>
-
+</div>
   </ion-card>
 
 
