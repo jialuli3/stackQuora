@@ -5,7 +5,9 @@
   Ionic pages and navigation.
 -->
 <ion-content>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card >
     <ion-item >
       <ion-row>
@@ -25,7 +27,7 @@
 
     </ion-item>
       <ion-card-content>
-        <ion-note> {{question?.posted_time}}</ion-note>
+        <ion-note> {{question?.creationdate}}</ion-note>
         <h1>Question: {{question?.title}}</h1>
         <div  [innerHTML] ="question?.body" style="white-space: pre-wrap;"></div>
 
@@ -74,7 +76,7 @@
     <button ion-button small color='green_l1'>FOLLOW</button>
   </ion-col>
   </ion-row>
-  <ion-note>XXX answered 11h ago</ion-note>
+  <ion-note>{{answer.creationdate}}</ion-note>
 
   </ion-item>
 

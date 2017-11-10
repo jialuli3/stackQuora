@@ -26,28 +26,34 @@ export class DisplayQuestionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DisplayQuestionPage');
     this.qid=this.navParams.get('data');
-    console.log(this.qid);
+    this.getQuestionAnswer();
+  }
+
+  getQuestionAnswer(){
     this.mockData.displayQuestionAnswers(this.qid,1).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
       for (let i in this.answers){
           if(this.answers[i].userID==API.userID){
-            my_answer.push(true);
+            this.my_answer.push(true);
           }
           else{
-            my_answer.push(false);
+            this.my_answer.push(false);
           }
         }
       //console.log(data);
       console.log("question",this.question);
       console.log("answers",this.answers);
+      console.log(this.my_answer);
     });
   }
-
   answerQuestion(){
     this.navCtrl.push(AnswerQuestionPage,{
       question:this.question
     });
   }
-
+  doRefresh(refresher){
+    this.getQuestionAnswer()
+    refresher.complete()
+  }
 }

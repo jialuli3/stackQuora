@@ -11,7 +11,6 @@ import { StackMockProvider} from '../../providers/stack-mock/stack-mock'
 export class HomePage {
   contents: any;
   voted_status: any;
-  home_display: any;
   upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   up_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
@@ -26,7 +25,17 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    this.home_display="my_questions";
+    this.load_content();
+
+    //this.initial_voted_status();
+  }
+
+  load_content(){
+    this.upvote_add = [0,0,0,0,0,0,0,0,0,0];
+    this.downvote_min= [0,0,0,0,0,0,0,0,0,0];
+    this.up_buttonColor =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
+    this.down_buttonColor=['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
+
     this.mockData.getUserTimeline().subscribe(data=>{
       console.log(data);
       this.contents=data.contents;
@@ -48,22 +57,14 @@ export class HomePage {
         }
       }
     });
-
-    //this.initial_voted_status();
   }
 
-  /*inital_voted_status(){
-    //console.log(this.voted_status)
-    for (let i in this.voted_status){
-      //console.log(this.voted_status[i])
-      if (this.voted_status[i]==1){
-        this.up_buttonColor[i]='green_d3';
-      }
-      else if(this.voted_status[i]==-1){
-        this.down_buttonColor[i]='green_d3';
-      }
-    }
-  }*/
+  doRefresh(refresher){
+    this.load_content();
+    refresher.complete();
+
+  }
+
 
   upvoted(i){
     //console.log(i,this.voted_status[i])
