@@ -50,7 +50,7 @@
         </button>
       </ion-col>
       <ion-col col-auto>
-        <button color='green_l1' ion-button icon-left clear small>
+        <button color='green_l1' ion-button icon-left clear small (click)="answerQuestion()">
           <ion-icon name="document"></ion-icon>
           <div>Answer This Question</div>
         </button>
@@ -97,6 +97,20 @@
         <div>{{answer.downvotes}}</div>
       </button>
     </ion-col>
+    <ion-col col-1>
+    </ion-col>
+    <div [ngSwitch]='my_answer[i]'>
+    <ion-col col-2 >
+      <button *ngSwitchCase="true" color='green_l1' ion-button icon-left clear small>
+        <ion-icon name="clipboard"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-2>
+      <button *ngSwitchCase="true" color='danger' ion-button icon-left clear small>
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-col>
+  </div>
   </ion-row>
 </ion-grid>
 </div>

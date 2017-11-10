@@ -56,7 +56,7 @@ ASK
     <ion-note *ngSwitchCase="'Q'">{{content.author}} {{content.activity}} a question.</ion-note>
     <ion-note *ngSwitchCase="'A'">{{content.author}} {{content.activity}} an answer.</ion-note>
   </div>-->
-  <ion-note>{{content.owneruserid}} posted a question</ion-note><br>
+  <ion-note>{{content.owneruserid}} posted a question.</ion-note><br>
     <!--<b>{{content.type}}: {{content.title}}</b>-->
     <b>Q:{{content.title}}</b>
    <div  [innerHTML] ="content.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
@@ -97,7 +97,7 @@ ASK
 </ion-grid>
 </ion-card>
 
-  
+
 <!--<ion-card>
   <ion-item>
     <ion-row>

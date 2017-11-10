@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { Http,Headers } from '@angular/http';
+import { API } from '../../providers/API';
 
 /**
  * Generated class for the AskQuestionPage page.
@@ -58,7 +59,9 @@ export class AskQuestionPage {
       posted_time:this.date
     };
     //post to url
-    this.http.post("",JSON.stringify(body),{headers:headers}).map(res=>res.json()).subscribe(data=>{});
+    this.http.post(API.VM+API.postQuestion,JSON.stringify(body),{headers:headers}).subscribe(data=>{
+        console.log(data);
+    });
     console.log(JSON.stringify(body))
     this.navCtrl.pop()
   }

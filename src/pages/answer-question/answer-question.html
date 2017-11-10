@@ -1,0 +1,62 @@
+<!--
+  Generated template for the AnswerQuestionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Answer A Question</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+<ion-card>
+  <ion-item >
+    <ion-row>
+      <ion-col col-auto>
+    <ion-avatar item-start>
+      <img src='http://lorempixel.com/64/64/'/>
+    </ion-avatar>
+  </ion-col>
+  <ion-col col-5>
+    <h2> {{question?.authorName}}</h2>
+    <p>Reputations:{{question?.reputation}}</p>
+  </ion-col>
+  <ion-col col-3>
+    <button ion-button small outline color='green_l1'>FOLLOW</button>
+  </ion-col>
+  </ion-row>
+
+  </ion-item>
+    <ion-card-content>
+      <ion-note> {{question?.posted_time}}</ion-note>
+      <h1>Question: {{question?.title}}</h1>
+      <div  [innerHTML] ="question?.body" style="white-space: pre-wrap;"></div>
+
+      </ion-card-content>
+  <ion-row>
+    <ion-col col-auto *ngFor="let tag of question?.tags">
+     <button ion-button small outline color='green_l1'>{{tag}}</button>
+   </ion-col>
+</ion-row>
+<ion-item no-lines>
+  <ion-label color="green_l1" stacked>Your answer*</ion-label>
+</ion-item>
+<ion-item no-lines>
+<textarea position:fixed rows='15' cols='30.5' padding type='text' value="" [(ngModel)]="descriptions">
+</textarea>
+</ion-item>
+<ion-row>
+  <ion-col col-2>
+  </ion-col>
+  <ion-col col-4>
+    <button ion-button small color='green_l1' outline (click)="submitAnswer()">submit</button>
+  </ion-col>
+  <ion-col col-4>
+    <button ion-button small color='green_l1' outline (click)="cancelAnswer()">cancel</button>
+  </ion-col>
+</ion-row>
+</ion-card>
+</ion-content>
