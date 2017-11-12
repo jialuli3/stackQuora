@@ -4,5 +4,6 @@ export class API{
   static getUserTimeline: string="/utilities/userUpdateRandom/";
   static displayQuestionAnswers: string= "/utilities/displayQuestionAnswers/"
   static postQuestion: string="/utilities/post/postQuestion/";
-  static userID:string="37404180";
+  static postAnswer: string ="/utilities/post/postAnswer/";
+  static userID:string="1710728";
 }

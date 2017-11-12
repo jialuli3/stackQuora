@@ -29,7 +29,7 @@ export class NotificationsPage {
 
   ionViewDidLoad(){
     console.log("loaded");
-    this.mockData.load_contents().subscribe(data=>{
+    this.mockData.getUserTimeline().subscribe(data=>{
       this.contents=data.contents;
       this.voted_status=data.voted_status;
       console.log(this.voted_status)

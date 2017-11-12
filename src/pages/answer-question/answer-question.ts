@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { API } from '../../providers/API';
 import { AlertController } from 'ionic-angular';
+import { Http,Headers } from '@angular/http';
 
 /**
  * Generated class for the AnswerQuestionPage page.
@@ -18,13 +19,16 @@ import { AlertController } from 'ionic-angular';
 export class AnswerQuestionPage {
   question: any;
   descriptions: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController) {
+  date: any;
+  parentID: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public http:Http) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnswerQuestionPage');
     this.question=this.navParams.get('question');
     console.log(this.question);
+    this.parentID=this.question.qid;
   }
 
   submitAnswer(){
@@ -44,13 +48,15 @@ export class AnswerQuestionPage {
     let body={
       userID:API.userID,
       body:this.descriptions,
-      posted_time:this.date
+      parentID:String(this.parentID)
     };
     //post to url
-    //this.http.post(API.VM+API.postQuestion,JSON.stringify(body),{headers:headers}).subscribe(data=>{
-    //    console.log(data);
-    //});
-    console.log(JSON.stringify(body))
+    let post_content=String("{\"content\":{\"userID\":\""+API.userID+"\",\"body\":\""+String(this.descriptions)+"\",\"parentID\":\""+String(this.parentID)+"\"},}");
+    console.log(typeof posted_time)
+    this.http.post(API.VM+API.postAnswer,post_content,{headers:headers}).subscribe(data=>{
+        console.log(data);
+    });
+    console.log(post_content);
     this.presentSubmittedAlert();
     this.navCtrl.pop()
   }
