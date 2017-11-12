@@ -60,7 +60,7 @@
     </ion-row>
   </ion-grid>
 <ion-item-divider></ion-item-divider>
-<div *ngFor="let answer of answers">
+<div *ngFor="let answer of answers; let i=index">
   <ion-item >
     <ion-row>
       <ion-col col-auto>
@@ -101,14 +101,14 @@
     </ion-col>
     <ion-col col-1>
     </ion-col>
-    <div [ngSwitch]='my_answer[i]'>
+    <div [ngSwitch]="my_answer[i]">
     <ion-col col-2 >
       <button *ngSwitchCase="true" color='green_l1' ion-button icon-left clear small>
         <ion-icon name="clipboard"></ion-icon>
       </button>
     </ion-col>
     <ion-col col-2>
-      <button *ngSwitchCase="true" color='danger' ion-button icon-left clear small>
+      <button *ngSwitchCase="true" color='danger' ion-button icon-left clear small (click)="deleteAnswer(i)">
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-col>
@@ -116,6 +116,7 @@
   </ion-row>
 </ion-grid>
 </div>
+
   </ion-card>
 
 

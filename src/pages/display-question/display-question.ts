@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { AnswerQuestionPage} from '../answer-question/answer-question';
 import { API } from '../../providers/API';
+import { Http,Headers } from '@angular/http';
 /**
  * Generated class for the DisplayQuestionPage page.
  *
@@ -20,7 +21,7 @@ export class DisplayQuestionPage {
   answers: any;
   qid: string;
   my_answer =[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http) {
   }
 
   ionViewDidLoad() {
@@ -30,11 +31,13 @@ export class DisplayQuestionPage {
   }
 
   getQuestionAnswer(){
-    this.mockData.displayQuestionAnswers(this.qid,1).subscribe(data=>{
+    this.mockData.displayQuestionAnswers(36229240,1).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
+      this.my_answer=[]
       for (let i in this.answers){
-          if(this.answers[i].userID==API.userID){
+        console.log(String(this.answers[i].authorID),API.userID)
+          if(String(this.answers[i].authorID)==API.userID){
             this.my_answer.push(true);
           }
           else{
@@ -55,5 +58,13 @@ export class DisplayQuestionPage {
   doRefresh(refresher){
     this.getQuestionAnswer()
     refresher.complete()
+  }
+
+  deleteAnswer(i){
+    console.log(API.VM+API.deleteQuestionAnswer+this.answers[i].aid+'/0')
+    this.http.get(API.VM+API.deleteQuestionAnswer+this.answers[i].aid+'/0').subscribe(data=>{
+      console.log(data);
+    });
+    this.getQuestionAnswer()
   }
 }

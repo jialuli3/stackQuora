@@ -5,5 +5,6 @@ export class API{
   static displayQuestionAnswers: string= "/utilities/displayQuestionAnswers/"
   static postQuestion: string="/utilities/post/postQuestion/";
   static postAnswer: string ="/utilities/post/postAnswer/";
+  static deleteQuestionAnswer: string="/utilities/post/deletePost/"
   static userID:string="1710728";
 }
