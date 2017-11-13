@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AskQuestionPage} from '../ask-question/ask-question';
 import { DisplayQuestionPage } from '../display-question/display-question'
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock'
+import { API } from '../../providers/API';
 
 @Component({
   selector: 'page-home',
@@ -16,9 +17,9 @@ export class HomePage {
   up_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
   down_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
   comment_buttonColor: string ='green_l2';
-  //voted_status: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   upvote_add: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvote_min: Array<number> = [0,0,0,0,0,0,0,0,0,0];
+  qIDs=[];
 
   constructor(public navCtrl: NavController, private mockData: StackMockProvider) {
 
@@ -31,15 +32,26 @@ export class HomePage {
   }
 
   load_content(){
+        this.mockData.getUserTimeline().subscribe(data=>{
+      console.log(data);
+      this.contents=data.contents;
+      this.getVotedStatus();
+    });
+
+
+  }
+
+  getVotedStatus(){
     this.upvote_add = [0,0,0,0,0,0,0,0,0,0];
     this.downvote_min= [0,0,0,0,0,0,0,0,0,0];
     this.up_buttonColor =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
     this.down_buttonColor=['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
-
-    this.mockData.getUserTimeline().subscribe(data=>{
-      console.log(data);
-      this.contents=data.contents;
-      this.voted_status=data.voted_status;
+    this.qIDs=[]
+    for (let i in this.contents){
+        this.qIDs.push(String(this.contents[i].qID));
+    }
+    this.mockData.getVotedStatus(API.userID,this.qIDs,[]).map(res => res.json()).subscribe(data=>{
+      this.voted_status=data.question_voted_status;
       console.log(this.voted_status)
       for (let i in this.voted_status){
         //console.log(this.voted_status[i])
@@ -85,6 +97,7 @@ export class HomePage {
       this.up_buttonColor[i]='green_d3';
       this.down_buttonColor[i]='green_l2'
     }//change from downvote to upvote
+    this.mockData.updateVotedStatus(this.contents[i].qID,0,API.userID,this.voted_status[i]+1);
   }
 
   //TO DO: need to update the database
@@ -106,11 +119,14 @@ export class HomePage {
       this.downvote_min[i]=0;
       this.down_buttonColor[i]='green_l2';
     }//deselct downvotes
+    this.mockData.updateVotedStatus(this.contents[i].qID,0,API.userID,this.voted_status[i]+1);
+
   }
 
   displayQuestion(i){
       this.navCtrl.push(DisplayQuestionPage,{
-        data:JSON.stringify(this.contents[i].qID)
+        data:JSON.stringify(this.contents[i].qID),
+        question_color: this.voted_status[i]
       });
   }
   askQuestion(){

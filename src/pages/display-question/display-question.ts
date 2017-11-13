@@ -21,6 +21,14 @@ export class DisplayQuestionPage {
   answers: any;
   qid: string;
   my_answer =[];
+  question_up = 0;
+  question_down=0;
+  upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
+  downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
+  up_buttonColor ='green_l2';
+  down_buttonColor='green_l2';
+  color=0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http) {
   }
 
@@ -31,7 +39,7 @@ export class DisplayQuestionPage {
   }
 
   getQuestionAnswer(){
-    this.mockData.displayQuestionAnswers(36229240,1).subscribe(data=>{
+    this.mockData.displayQuestionAnswers(this.qid,1).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
       this.my_answer=[]
@@ -50,6 +58,8 @@ export class DisplayQuestionPage {
       console.log(this.my_answer);
     });
   }
+
+
   answerQuestion(){
     this.navCtrl.push(AnswerQuestionPage,{
       question:this.question

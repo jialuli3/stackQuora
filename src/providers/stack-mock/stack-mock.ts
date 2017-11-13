@@ -33,7 +33,28 @@ export class StackMockProvider {
     //type 0 for aid, type 1 for qid
     return this.http.get(API.VM+API.displayQuestionAnswers+id+'/'+type).map(res=>res.json());
   }
-   /*public get_contents(){
-     return this.contents;
-   }*/
+
+  public getVotedStatus(userID,qid,aid){
+    let body={
+      userID:userID,
+      qIDs:qid,
+      aIDs:aid
+    }
+    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    console.log(post_content)
+    //this.http.post(API.VM+API.postAnswer,post_content,{headers:headers}).subscribe(data=>{
+    return this.http.post(API.VM+API.getVotedStatus,post_content);
+  }
+
+  public updateVotedStatus(postID,postType,userID,votedStatus){
+    //postID: qid or aid
+    //postType: 0 for Q, 1 for A
+    //votedStatus -1 for downvote, 1 for upvote, 0 for neutral
+    console.log(API.VM+API.updateVotedStatus+postID+'/'+postType+'/'+votedStatus)
+    return this.http.get(API.VM+API.updateVotedStatus+postID+'/'+postType+'/'+userID+'/'+votedStatus).subscribe(data=>{
+    console.log(data)
+  });
+
+  }
+
 }

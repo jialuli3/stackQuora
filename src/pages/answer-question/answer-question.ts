@@ -53,7 +53,6 @@ export class AnswerQuestionPage {
     //post to url
     //let post_content=String("{\"content\":{\"userID\":\""+API.userID+"\",\"body\":\""+String(this.descriptions)+"\",\"parentID\":\""+String(this.parentID)+"\"}}");
     let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
-    console.log(typeof posted_content)
     //this.http.post(API.VM+API.postAnswer,post_content,{headers:headers}).subscribe(data=>{
     this.http.post(API.VM+API.postAnswer,post_content).subscribe(data=>{
         console.log(data);
