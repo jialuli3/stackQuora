@@ -21,13 +21,21 @@ export class DisplayQuestionPage {
   answers: any;
   qid: string;
   my_answer =[];
-  question_up = 0;
-  question_down=0;
-  upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
-  downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
-  up_buttonColor ='green_l2';
-  down_buttonColor='green_l2';
-  color=0;
+  downvoted_min_q=0;
+  upvoted_add_q=0;
+  upvotes_without_user_q=0;
+  downvotes_without_user_q=0;
+  up_buttonColor_q ='green_l1';
+  down_buttonColor_q='green_l1';
+  voted_status_q=0;
+
+  upvotes_without_user=[];
+  downvotes_without_user=[];
+  upvote_add=[];
+  downvote_min=[];
+  up_buttonColor=[];
+  down_buttonColor=[];
+  voted_status=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http) {
   }
@@ -35,7 +43,74 @@ export class DisplayQuestionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DisplayQuestionPage');
     this.qid=this.navParams.get('data');
+    this.voted_status_q=this.navParams.get('question_color');
     this.getQuestionAnswer();
+
+
+  }
+
+  getVotedStatus(){
+    this.upvotes_without_user_q=0;
+    this.downvotes_without_user_q=0;
+    this.upvoted_add_q=0;
+    this.downvoted_min_q=0;
+    this.up_buttonColor_q ='green_l2';
+    this.down_buttonColor_q='green_l2';
+    if(this.voted_status_q==1){
+      this.up_buttonColor_q="green_d3";
+      this.upvotes_without_user_q=this.question.upvotes-1;
+      this.upvoted_add_q=1;
+    }
+    else if(this.voted_status_q==-1){
+      this.down_buttonColor_q="green_d3";
+      this.upvotes_without_user_q=this.question.downvotes-1;
+      this.downvoted_min_q=1;
+    }
+  }
+
+  upvoted_q(){
+    //console.log(i,this.voted_status[i])
+    if(this.voted_status_q==0){
+      this.voted_status_q=1;
+      this.upvoted_add_q=1;
+      this.up_buttonColor_q='green_d3';
+    }//currently not selected and upvoted
+    else if(this.voted_status_q==1){
+      this.voted_status_q=0;
+      this.upvoted_add_q=0;
+      this.up_buttonColor_q='green_l2';
+    }//currently upvoted, deselect votes
+    else if(this.voted_status_q==-1){
+      this.voted_status_q=1;
+      this.upvoted_add_q=1;
+      this.downvoted_min_q=0;
+      this.up_buttonColor_q='green_d3';
+      this.down_buttonColor_q='green_l2'
+    }//change from downvote to upvote
+    this.mockData.updateVotedStatus(this.qid,0,API.userID,this.voted_status_q+1);
+  }
+
+  //TO DO: need to update the database
+  downvoted_q(){
+    if(this.voted_status_q==0){
+      this.voted_status_q=-1;
+      this.downvoted_min_q=1;
+      this.down_buttonColor_q='green_d3';
+    }//currently not selected and downvoted
+    else if(this.voted_status_q==1){
+      this.voted_status_q=-1;
+      this.downvoted_min_q=1;
+      this.upvoted_add_q=0;
+      this.down_buttonColor_q='green_d3';
+      this.up_buttonColor_q='green_l2';
+    }//change from upvoted to downvoted
+    else if(this.voted_status_q==-1){
+      this.voted_status_q=0;
+      this.downvoted_min_q=0;
+      this.down_buttonColor_q='green_l2';
+    }//deselct downvotes
+    this.mockData.updateVotedStatus(this.qid,0,API.userID,this.voted_status_q+1);
+
   }
 
   getQuestionAnswer(){
@@ -55,14 +130,14 @@ export class DisplayQuestionPage {
       //console.log(data);
       console.log("question",this.question);
       console.log("answers",this.answers);
-      console.log(this.my_answer);
+      this.getVotedStatus();
     });
   }
 
 
   answerQuestion(){
     this.navCtrl.push(AnswerQuestionPage,{
-      question:this.question
+      question:this.question,
     });
   }
   doRefresh(refresher){

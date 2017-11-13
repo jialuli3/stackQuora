@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, Content } from 'ionic-angular';
 import { AskQuestionPage} from '../ask-question/ask-question';
 import { DisplayQuestionPage } from '../display-question/display-question'
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock'
 import { API } from '../../providers/API';
 
+
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
+
 export class HomePage {
   contents: any;
   voted_status: any;
@@ -20,14 +22,17 @@ export class HomePage {
   upvote_add: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvote_min: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   qIDs=[];
-
+  @ViewChild('myContent') contentArea;
   constructor(public navCtrl: NavController, private mockData: StackMockProvider) {
 
   }
 
+  ionViewWillEnter(){
+    this.contentArea.resize();
+
+  }
   ionViewDidLoad(){
     this.load_content();
-
     //this.initial_voted_status();
   }
 

@@ -1,19 +1,7 @@
-<ion-header>
+<ion-header style="position:fixed">
   <ion-navbar>
     <ion-title>Home</ion-title>
   </ion-navbar>
-</ion-header>
-<ion-content>
-<!--<ion-toolbar no-border-top>
-  <ion-searchbar></ion-searchbar>
-</ion-toolbar>-->
-<!--<ion-toolbar color='green_l2'>
-  <ion-searchbar ></ion-searchbar>
-</ion-toolbar>-->
-<ion-refresher (ionRefresh)="doRefresh($event)">
-  <ion-refresher-content></ion-refresher-content>
-</ion-refresher>
-<ion-toolbar>
   <ion-segment>
   <ion-segment-button>
 <button ion-button icon-start clear color='green_d1'>
@@ -28,8 +16,20 @@ ASK
 </button>
 </ion-segment-button>
 </ion-segment>
-</ion-toolbar>
-<ion-card *ngFor="let content of contents; let i=index" >
+</ion-header>
+
+<ion-content #myContent>
+<!--<ion-toolbar no-border-top>
+  <ion-searchbar></ion-searchbar>
+</ion-toolbar>-->
+<!--<ion-toolbar color='green_l2'>
+  <ion-searchbar ></ion-searchbar>
+</ion-toolbar>-->
+<ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
+<ion-card *ngFor="let content of contents; let i=index">
 <ion-item>
   <ion-row>
     <ion-col col-auto>
@@ -99,7 +99,6 @@ ASK
 </ion-row>
 </ion-grid>
 </ion-card>
-
 
 <!--<ion-card>
   <ion-item>
