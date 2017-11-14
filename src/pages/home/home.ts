@@ -69,7 +69,7 @@ export class HomePage {
         }
         else if(this.voted_status[i]==-1){
           this.down_buttonColor[i]='green_d3';
-          this.upvotes_without_user[i]-=1;
+          this.downvotes_without_user[i]-=1;
           this.downvote_min[i]=1;
         }
       }

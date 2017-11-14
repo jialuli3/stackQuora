@@ -20,6 +20,7 @@ export class DisplayQuestionPage {
   question :any;
   answers: any;
   qid: string;
+  aIDs=[];
   my_answer =[];
   downvoted_min_q=0;
   upvoted_add_q=0;
@@ -48,8 +49,43 @@ export class DisplayQuestionPage {
 
 
   }
-
-  getVotedStatus(){
+  getVotedStatus_a(){
+    this.upvotes_without_user=[];
+    this.downvotes_without_user=[];
+    this.upvote_add=[];
+    this.downvote_min=[];
+    this.up_buttonColor=[];
+    this.down_buttonColor=[];
+    this.mockData.getVotedStatus(API.userID,[],this.aIDs).map(res=>res.json()).subscribe(data=>{
+      console.log(data)
+      this.voted_status=data.answer_voted_status;
+      for (let i in this.voted_status){
+        console.log(this.voted_status[i])
+        this.upvotes_without_user.push();
+        this.downvotes_without_user.push(this.answers[i].downvotes);
+        if (this.voted_status[i]==1){
+          this.up_buttonColor.push('green_d3');
+          this.upvotes_without_user.push(this.answers[i].upvotes-1);
+          this.upvote_add.push(1);
+        }
+        else if(this.voted_status[i]==-1){
+          this.down_buttonColor.push('green_d3');
+          this.downvotes_without_user.push(this.answers[i].downvotes-1);
+          this.downvote_min.push(1);
+        }
+        else{
+          this.up_buttonColor.push('green_l2');
+          this.upvotes_without_user.push(this.answers[i].upvotes);
+          this.upvote_add.push(0);
+          this.down_buttonColor.push('green_l2');
+          this.downvotes_without_user.push(this.answers[i].downvotes);
+          this.downvote_min.push(0);
+        }
+      }
+      console.log(this.upvotes_without_user,this.downvotes_without_user, this.upvote_add,this.downvote_min,this.up_buttonColor,this.down_buttonColor)
+    });
+  }
+  getVotedStatus_q(){
     this.upvotes_without_user_q=0;
     this.downvotes_without_user_q=0;
     this.upvoted_add_q=0;
@@ -113,12 +149,58 @@ export class DisplayQuestionPage {
 
   }
 
+  upvoted_a(i){
+    if(this.voted_status[i]==0){
+      this.voted_status[i]=1;
+      this.upvote_add[i]=1;
+      this.up_buttonColor[i]='green_d3';
+    }//currently not selected and upvoted
+    else if(this.voted_status[i]==1){
+      this.voted_status[i]=0;
+      this.upvote_add[i]=0;
+      this.up_buttonColor[i]='green_l2';
+    }//currently upvoted, deselect votes
+    else if(this.voted_status[i]==-1){
+      this.voted_status[i]=1;
+      this.upvote_add[i]=1;
+      this.downvote_min[i]=0;
+      this.up_buttonColor[i]='green_d3';
+      this.down_buttonColor[i]='green_l2'
+    }//change from downvote to upvote
+    this.mockData.updateVotedStatus(this.answers[i].aid,1,API.userID,this.voted_status[i]+1);
+
+  }
+  downvoted_a(i){
+    if(this.voted_status[i]==0){
+      this.voted_status[i]=-1;
+      this.downvote_min[i]=1;
+      this.down_buttonColor[i]='green_d3';
+    }//currently not selected and downvoted
+    else if(this.voted_status[i]==1){
+      this.voted_status[i]=-1;
+      this.downvote_min[i]=1;
+      this.upvote_add[i]=0;
+      this.down_buttonColor[i]='green_d3';
+      this.up_buttonColor[i]='green_l2';
+    }//change from upvoted to downvoted
+    else if(this.voted_status[i]==-1){
+      this.voted_status[i]=0;
+      this.downvote_min[i]=0;
+      this.down_buttonColor[i]='green_l2';
+    }//deselct downvotes
+    this.mockData.updateVotedStatus(this.answers[i].aid,1,API.userID,this.voted_status[i]+1);
+
+  }
+
+
   getQuestionAnswer(){
     this.mockData.displayQuestionAnswers(this.qid,1).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
       this.my_answer=[]
+      this.aIDs=[]
       for (let i in this.answers){
+        this.aIDs.push(String(this.answers[i].aid));
         console.log(String(this.answers[i].authorID),API.userID)
           if(String(this.answers[i].authorID)==API.userID){
             this.my_answer.push(true);
@@ -130,7 +212,8 @@ export class DisplayQuestionPage {
       //console.log(data);
       console.log("question",this.question);
       console.log("answers",this.answers);
-      this.getVotedStatus();
+      this.getVotedStatus_q();
+      this.getVotedStatus_a();
     });
   }
 

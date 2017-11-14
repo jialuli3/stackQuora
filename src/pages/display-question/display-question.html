@@ -87,18 +87,18 @@
 <ion-grid>
   <ion-row>
     <ion-col col-2>
-      <button color="green_l2" ion-button icon-left clear small>
+      <button [color]="up_buttonColor[i]" ion-button icon-left clear small (click)="upvoted_a(i)">
         <ion-icon name="thumbs-up"></ion-icon>
-        <!--<div>{{upvotes_without_user[i]+upvote_add[i]}}</div>-->
-        <div>{{answers?.upvotes}}</div>
+        <div>{{upvotes_without_user[i]+upvote_add[i]}}</div>
+        <!--<div>{{answers?.upvotes}}</div>-->
 
       </button>
     </ion-col>
     <ion-col col-2>
-      <button [color]="green_l2" ion-button icon-left clear small>
+      <button [color]="down_buttonColor[i]" ion-button icon-left clear small (click)="downvoted_a(i)">
         <ion-icon name="thumbs-down"></ion-icon>
-      <!--  <div>{{downvotes_without_user[i]+downvote_min[i]}}</div>-->
-        <div>{{answers?.downvotes}}</div>
+       <div>{{downvotes_without_user[i]+downvote_min[i]}}</div>
+        <!--<div>{{answers?.downvotes}}</div>-->
 
       </button>
     </ion-col>
