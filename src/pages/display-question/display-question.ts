@@ -45,6 +45,7 @@ export class DisplayQuestionPage {
     console.log('ionViewDidLoad DisplayQuestionPage');
     this.qid=this.navParams.get('data');
     this.voted_status_q=this.navParams.get('question_color');
+    console.log(this.voted_status_q)
     this.getQuestionAnswer();
 
 
