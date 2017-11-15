@@ -24,12 +24,12 @@
           <ion-icon class='followers' name='people'></ion-icon>
         </ion-col>
         <ion-col >
-          <font class='follow_text'>Followers</font><br>
-          <font class="follow">245</font>
+          <font class='follow_text' (click)="checkFollowers()">Followers</font><br>
+          <font class="follow" (click)="checkFollowers()">245</font>
         </ion-col>
         <ion-col>
-          <font class='follow_text'>Following</font><br>
-          <font class="follow">200</font>
+          <font class='follow_text' (click)="checkFollowings()">Following</font><br>
+          <font class="follow" (click)="checkFollowings()">200</font>
         </ion-col>
       </ion-row>
     </ion-grid>

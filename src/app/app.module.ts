@@ -14,6 +14,9 @@ import { AskQuestionPage } from '../pages/ask-question/ask-question';
 import { UserLoginPage } from '../pages/user-login/user-login';
 import { MyQuestionsAnswersPage } from '../pages/my-questions-answers/my-questions-answers';
 import { AnswerQuestionPage } from '../pages/answer-question/answer-question';
+import { FollowersFollowingPage } from '../pages/followers-following/followers-following';
+import { SearchPage } from '../pages/search/search';
+import { DisplayUserPage} from '../pages/display-user/display-user';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +34,10 @@ import { StorageProvider } from '../providers/storage/storage';
     AskQuestionPage,
     UserLoginPage,
     MyQuestionsAnswersPage,
-    AnswerQuestionPage
+    AnswerQuestionPage,
+    FollowersFollowingPage,
+    SearchPage,
+    DisplayUserPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,10 @@ import { StorageProvider } from '../providers/storage/storage';
     AskQuestionPage,
     UserLoginPage,
     MyQuestionsAnswersPage,
-    AnswerQuestionPage
+    AnswerQuestionPage,
+    FollowersFollowingPage,
+    SearchPage,
+    DisplayUserPage
   ],
   providers: [
     StatusBar,

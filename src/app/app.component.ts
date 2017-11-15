@@ -9,12 +9,16 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { UserLoginPage } from '../pages/user-login/user-login';
 import { UserPage } from '../pages/user/user';
 import { MyQuestionsAnswersPage} from '../pages/my-questions-answers/my-questions-answers';
+import { FollowersFollowingPage } from '../pages/followers-following/followers-following';
+import { DisplayUserPage} from '../pages/display-user/display-user';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  //rootPage:any = TabsPage;
+  rootPage:any = DisplayUserPage;
+  //rootPage:any = FollowersFollowingPage;
   //rootPage:any = MyQuestionsAnswersPage;
   //rootPage:any= DisplayQuestionPage;
   //rootPage:any = AskQuestionPage;

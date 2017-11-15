@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Content } from 'ionic-angular';
 import { AskQuestionPage} from '../ask-question/ask-question';
-import { DisplayQuestionPage } from '../display-question/display-question'
-import { StackMockProvider} from '../../providers/stack-mock/stack-mock'
+import { DisplayQuestionPage } from '../display-question/display-question';
+import { SearchPage } from '../search/search';
+import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { API } from '../../providers/API';
 
 
@@ -136,6 +137,9 @@ export class HomePage {
   }
   askQuestion(){
       this.navCtrl.push(AskQuestionPage);
+  }
+  search(){
+      this.navCtrl.push(SearchPage);
   }
 
 
