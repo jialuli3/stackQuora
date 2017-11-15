@@ -22,6 +22,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StackMockProvider } from '../providers/stack-mock/stack-mock';
 import { StorageProvider } from '../providers/storage/storage';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { StorageProvider } from '../providers/storage/storage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StackMockProvider,
-    StorageProvider
+    StorageProvider,
+    AuthProvider
   ]
 })
 export class AppModule {

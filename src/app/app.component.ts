@@ -17,12 +17,12 @@ import { DisplayUserPage} from '../pages/display-user/display-user';
 })
 export class MyApp {
   //rootPage:any = TabsPage;
-  rootPage:any = DisplayUserPage;
+  //rootPage:any = DisplayUserPage;
   //rootPage:any = FollowersFollowingPage;
   //rootPage:any = MyQuestionsAnswersPage;
   //rootPage:any= DisplayQuestionPage;
   //rootPage:any = AskQuestionPage;
-  //rootPage:any = UserLoginPage;
+  rootPage:any = UserLoginPage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

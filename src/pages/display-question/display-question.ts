@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { AnswerQuestionPage} from '../answer-question/answer-question';
 import { API } from '../../providers/API';
@@ -20,6 +20,7 @@ export class DisplayQuestionPage {
   question :any;
   answers: any;
   qid: string;
+  loader: any;
   aIDs=[];
   my_answer =[];
   downvoted_min_q=0;
@@ -38,10 +39,11 @@ export class DisplayQuestionPage {
   down_buttonColor=[];
   voted_status=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http, public loadingCtrl:LoadingController) {
   }
 
   ionViewDidLoad() {
+    this.presentLoading();
     console.log('ionViewDidLoad DisplayQuestionPage');
     this.qid=this.navParams.get('data');
     this.voted_status_q=this.navParams.get('question_color');
@@ -215,6 +217,7 @@ export class DisplayQuestionPage {
       console.log("answers",this.answers);
       this.getVotedStatus_q();
       this.getVotedStatus_a();
+      this.loader.dismiss();
     });
   }
 
@@ -235,5 +238,11 @@ export class DisplayQuestionPage {
       console.log(data);
     });
     this.getQuestionAnswer()
+  }
+  presentLoading() {
+   this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loader.present();
   }
 }

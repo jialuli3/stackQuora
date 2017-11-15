@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Content } from 'ionic-angular';
+import { NavController, Content, LoadingController } from 'ionic-angular';
 import { AskQuestionPage} from '../ask-question/ask-question';
 import { DisplayQuestionPage } from '../display-question/display-question';
 import { SearchPage } from '../search/search';
@@ -15,6 +15,7 @@ import { API } from '../../providers/API';
 export class HomePage {
   contents: any;
   voted_status: any;
+  loader:any;
   upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   up_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
@@ -24,7 +25,7 @@ export class HomePage {
   downvote_min: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   qIDs=[];
   @ViewChild('myContent') contentArea;
-  constructor(public navCtrl: NavController, private mockData: StackMockProvider) {
+  constructor(public navCtrl: NavController, private mockData: StackMockProvider, public loadingCtrl:LoadingController) {
 
   }
 
@@ -33,6 +34,7 @@ export class HomePage {
 
   }
   ionViewDidLoad(){
+    this.presentLoading()
     this.load_content();
     //this.initial_voted_status();
   }
@@ -74,6 +76,7 @@ export class HomePage {
           this.downvote_min[i]=1;
         }
       }
+      this.loader.dismiss();
     });
   }
 
@@ -142,5 +145,10 @@ export class HomePage {
       this.navCtrl.push(SearchPage);
   }
 
-
+  presentLoading() {
+   this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    this.loader.present();
+  }
 }
