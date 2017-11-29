@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { UserPage } from '../pages/user/user';
@@ -17,6 +19,10 @@ import { AnswerQuestionPage } from '../pages/answer-question/answer-question';
 import { FollowersFollowingPage } from '../pages/followers-following/followers-following';
 import { SearchPage } from '../pages/search/search';
 import { DisplayUserPage} from '../pages/display-user/display-user';
+import { PopoverPage } from '../pages/popover/popover';
+import { EditProfilePage} from '../pages/edit-profile/edit-profile';
+import { TenPostsPage} from '../pages/ten-posts/ten-posts';
+import { ChatPage } from '../pages/chat/chat'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +44,11 @@ import { AuthProvider } from '../providers/auth/auth';
     AnswerQuestionPage,
     FollowersFollowingPage,
     SearchPage,
-    DisplayUserPage
+    DisplayUserPage,
+    PopoverPage,
+    EditProfilePage,
+    TenPostsPage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -46,6 +56,7 @@ import { AuthProvider } from '../providers/auth/auth';
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages:true,
     }),
+    SocketIoModule.forRoot(config),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -62,7 +73,11 @@ import { AuthProvider } from '../providers/auth/auth';
     AnswerQuestionPage,
     FollowersFollowingPage,
     SearchPage,
-    DisplayUserPage
+    DisplayUserPage,
+    PopoverPage,
+    EditProfilePage,
+    TenPostsPage,
+    ChatPage
   ],
   providers: [
     StatusBar,

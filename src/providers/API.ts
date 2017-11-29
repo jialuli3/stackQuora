@@ -8,6 +8,11 @@ export class API{
   static deleteQuestionAnswer: string="/utilities/post/deletePost/"
   static getVotedStatus: string="/utilities/post/vote/checkList";
   static updateVotedStatus: string="/utilities/post/vote/";
+  static checkFollowings: string="/utilities/user/followings/";
+  static checkFollowers: string="/utilities/user/followers/";
+  static getFollowingStatus: string="/utilities/user/following/checkList";
+  static getUserStatus: string="/utilities/user/status/";
   //static userID:string="1710730";
-  static userID:string="4";
+  static userID:string="1710728";
+  //static userID:string="13";
 }

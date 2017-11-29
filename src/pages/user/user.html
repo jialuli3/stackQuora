@@ -3,7 +3,13 @@
     <ion-title>
       Me
     </ion-title>
+    <ion-buttons end>
+    <button ion-button icon-only (click)="presentPopover($event)">
+      <ion-icon name="more" ></ion-icon>
+    </button>
+  </ion-buttons>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content class="profile">
@@ -28,7 +34,7 @@
           <font class="follow" (click)="checkFollowers()">245</font>
         </ion-col>
         <ion-col>
-          <font class='follow_text' (click)="checkFollowings()">Following</font><br>
+          <font class='follow_text' (click)="checkFollowings()">Followings</font><br>
           <font class="follow" (click)="checkFollowings()">200</font>
         </ion-col>
       </ion-row>
@@ -51,5 +57,9 @@
    </ion-list>
 
 </ion-card>
-
+<ion-list no-border>
+<ion-item >
+<button padding ion-button block outline color="green_d1" (click)="logout()">Log out</button>
+</ion-item>
+</ion-list>
 </ion-content>

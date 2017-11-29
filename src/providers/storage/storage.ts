@@ -26,4 +26,8 @@ export class StorageProvider {
     console.log(qid,content)
     this.storage.set(qid,content);
   }
+
+  setID(username,userID){
+    this.storage.set(username,userID);
+  }
 }

@@ -11,18 +11,21 @@ import { UserPage } from '../pages/user/user';
 import { MyQuestionsAnswersPage} from '../pages/my-questions-answers/my-questions-answers';
 import { FollowersFollowingPage } from '../pages/followers-following/followers-following';
 import { DisplayUserPage} from '../pages/display-user/display-user';
-
+import { EditProfilePage} from '../pages/edit-profile/edit-profile';
+import { ChatPage } from '../pages/chat/chat';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   //rootPage:any = TabsPage;
-  //rootPage:any = DisplayUserPage;
+  //rootPage:any = ChatPage;
+  rootPage:any = DisplayUserPage;
   //rootPage:any = FollowersFollowingPage;
   //rootPage:any = MyQuestionsAnswersPage;
   //rootPage:any= DisplayQuestionPage;
   //rootPage:any = AskQuestionPage;
-  rootPage:any = UserLoginPage;
+  //rootPage:any = UserLoginPage;
+  //rootPage:any=EditProfilePage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

@@ -19,14 +19,18 @@
               <ion-label color="green_l1">Password</ion-label>
               <ion-input type='text' value="" [(ngModel)]="password"></ion-input>
             </ion-item>
-				<a color='green_l1'>Forgot your login detail? <b>Get help signing in</b></a>
+						<button class="bottom" ion-button clear full color="green_d1" (click)="resetPassword()">
+							Forgot password?</button>
 				<button ion-button block outline color="green_d1" (click)="login()">Log in</button>
-				<p>OR</p>
+				<button ion-button block outline color="green_d1" (click)="signup()">Sign Up</button>
+
+				<!--<p>OR</p>
 				<button ion-button icon-left block color="facebook">
 					<ion-icon name="logo-facebook"></ion-icon> Login with facebook
-				</button>
+				</button>-->
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
-	<button class="bottom" ion-button clear full color="green_l3" (click)="signUp()">Don't have an account? Sign up</button>
+
+
 </ion-content>

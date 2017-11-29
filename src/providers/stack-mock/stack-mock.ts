@@ -40,7 +40,7 @@ export class StackMockProvider {
       qIDs:qid,
       aIDs:aid
     }
-    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    let post_content=String("{\"content\":"+JSON.stringify(body)+"}");
     console.log(post_content)
     //this.http.post(API.VM+API.postAnswer,post_content,{headers:headers}).subscribe(data=>{
     return this.http.post(API.VM+API.getVotedStatus,post_content);
@@ -57,4 +57,25 @@ export class StackMockProvider {
 
   }
 
+  public checkFollowers(userID,page,showDetail){
+    return this.http.get(API.VM+API.checkFollowers+'/'+userID+'/'+page+'/'+showDetail);
+  }
+
+  public checkFollowings(userID,page,showDetail){
+    return this.http.get(API.VM+API.checkFollowings+'/'+userID+'/'+page+'/'+showDetail);
+  }
+
+  public getFollowingStatus(userID,targetLists){
+    let body={
+      userID:userID,
+      target:targetLists
+    }
+    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    console.log(post_content)
+    return this.http.post(API.VM+API.getFollowingStatus,post_content);
+  }
+
+  public getUserStatus(userID,showActivities){
+    return this.http.get(API.VM+API.getUserStatus+userID+'/'+showActivities);
+  }
 }

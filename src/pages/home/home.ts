@@ -16,6 +16,7 @@ export class HomePage {
   contents: any;
   voted_status: any;
   loader:any;
+  followingStatus= ["n","n","n","n","n","n","n","n","n","n"];
   upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   up_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
@@ -44,9 +45,17 @@ export class HomePage {
       console.log(data);
       this.contents=data.contents;
       this.getVotedStatus();
+      this.getFollowingStatus();
     });
 
 
+  }
+
+  getFollowingStatus(){
+    this.mockData.getFollowingStatus(API.userID,this.qIDs).map(res=>res.json()).subscribe(data=>{
+      this.followingStatus=data.following_results;
+      console.log(this.followingStatus)
+    });
   }
 
   getVotedStatus(){

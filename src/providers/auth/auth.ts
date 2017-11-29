@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+
 import 'rxjs/add/operator/map';
 
 /*
@@ -14,11 +15,14 @@ export class AuthProvider {
   constructor(public http: Http) {
     console.log('Hello AuthProvider Provider');
   }
-  login(){
-    return new Promise((resolve)=>{
-      setTimeout(()=>{
-        resolve(true);
-      },5000);
-    });
+  login(email,password){
+    let body={
+      email:email,
+      password:password
+    }
+    //return this.http.get().map(res=>res.json());
+  }
+  logout(){
+
   }
 }
