@@ -50,6 +50,9 @@ export class DisplayQuestionPage {
     this.type=this.navParams.get('type');
     this.voted_status_q=this.navParams.get('question_color');
     console.log(this.voted_status_q)
+    if(this.type==String(API.ANSWER)){
+      this.mockData.getqID(this.qid);
+    }
     this.getQuestionAnswer();
 
 
@@ -197,8 +200,14 @@ export class DisplayQuestionPage {
 
   }
 
+  getqID(){
+      this.mockData.getqID(this.qid).map(res=>res.json()).subscribe(data=>{
+        this.qid=data;
+      });
+  }
 
   getQuestionAnswer(){
+
     this.mockData.displayQuestionAnswers(this.qid,this.type).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
@@ -235,11 +244,10 @@ export class DisplayQuestionPage {
   }
 
   deleteAnswer(i){
-    console.log(API.VM+API.deleteQuestionAnswer+this.answers[i].aid+'/0')
-    this.http.get(API.VM+API.deleteQuestionAnswer+this.answers[i].aid+'/0').subscribe(data=>{
-      console.log(data);
+    this.http.get(API.VM+API.deleteQuestionAnswer+this.answers[i].aid+'/'+API.ANSWER).subscribe(data=>{
+      console.log("delete",data);
+      this.getQuestionAnswer()
     });
-    this.getQuestionAnswer()
   }
   presentLoading() {
    this.loader = this.loadingCtrl.create({

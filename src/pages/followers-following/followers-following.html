@@ -15,8 +15,10 @@
 
 </ion-header>
 
-
 <ion-content padding #FollowingContent>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div *ngIf="userIDs">
   <ion-list *ngFor="let uID of userIDs;let i=index">
     <ion-item>
@@ -26,14 +28,14 @@
     <img src='http://lorempixel.com/64/64/'/>
   </ion-avatar>
   </ion-col>
-  <ion-col col-5 >
+  <ion-col col-5 (click)="displayUser(i)">
   <h1>{{userStatus[i].userName}}</h1>
   <p>Reputations:{{userStatus[i].reputation}}</p>
   </ion-col>
   <ion-col col-3>
     <div [ngSwitch]="followingStatus[i]">
-      <button ion-button small outline color='green_l1' *ngSwitchCase="'y'">UNFOLLOW</button>
-      <button ion-button small outline color='green_l1' *ngSwitchCase="'n'">FOLLOW</button>
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'y'" (click)="updateFollowers(i)">UNFOLLOW</button>
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'n'" (click)="updateFollowers(i)">FOLLOW</button>
   </div>
   </ion-col>
   </ion-row>

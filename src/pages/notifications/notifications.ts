@@ -4,7 +4,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { DisplayQuestionPage} from '../display-question/display-question';
 
 import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
-
+import { API } from '../../providers/API';
 @Component({
   selector: 'page-notifications',
   templateUrl: 'notifications.html',
@@ -29,7 +29,7 @@ export class NotificationsPage {
 
   ionViewDidLoad(){
     console.log("loaded");
-    this.mockData.getUserTimeline().subscribe(data=>{
+    /*this.mockData.getUserTimeline().subscribe(data=>{
       this.contents=data.contents;
       this.voted_status=data.voted_status;
       console.log(this.voted_status)
@@ -48,8 +48,10 @@ export class NotificationsPage {
           this.downvote_min[i]=1;
         }
       }
+    });*/
+    this.mockData.getFollowingAcitivites(API.userID,0).subscribe(data=>{
+      console.log(data);
     });
-
     //this.initial_voted_status();
   }
 

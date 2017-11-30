@@ -26,63 +26,49 @@
       <ion-title>My Questions/Answers</ion-title>
     </ion-toolbar>
     </ion-navbar>
-
 </ion-header>
 
 
-<ion-content >
-  <div *ngFor="let content of contents; let i=index">
-    <div [ngSwitch]="hide_post[i]">
-  <ion-card *ngSwitchCase="false">
-      <ion-card-content>
-        <b>Q: {{content.title}}</b>
-
-          <div  [innerHTML] ="content.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
-
+<ion-content #MyQuestionsAnswersContent>
+  <div *ngIf="posts">
+  <ion-card *ngFor="let post of posts;let i=index">
+      <ion-card-content >
+        <b>Q: </b>
+          <div  [innerHTML] ="post.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
         </ion-card-content>
         <ion-item>
-    <ion-row>
-      <ion-col col-auto *ngFor="let tag of content.tags">
-       <button ion-button small outline color='green_l1'>{{tag}}</button>
-     </ion-col>
-  </ion-row>
 </ion-item>
     <ion-row>
       <ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>23</div>
+          <div>{{post.upVotes}}</div>
         </button>
       </ion-col>
       <ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="thumbs-down"></ion-icon>
-          <div>43</div>
+          <div>{{post.downVotes}}</div>
         </button>
       </ion-col>
-      <ion-col col-2>
+      <!--<ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="text"></ion-icon>
-          <div>{{content.comments}}</div>
+          <div></div>
         </button>
-      </ion-col>
+      </ion-col>-->
       <ion-col col-auto>
-        <ion-note class='note'>{{content.posted_time}}</ion-note>
+        <ion-note class='note'></ion-note>
       </ion-col>
-      <ion-col col-1>
-      <button color='green_l1' ion-button icon-left clear small>
-        <ion-icon name="clipboard"></ion-icon>
-      </button>
-    </ion-col>
     <ion-col col-1>
     <div [ngSwitch]='hide_trash_button'>
       <button *ngSwitchCase="true" color='danger' ion-button icon-left clear small (click)="delete_post(i)">
         <ion-icon name="close-circle"></ion-icon>
       </button>
   </div>
+
   </ion-col>
     </ion-row>
   </ion-card>
-</div>
 </div>
 </ion-content>

@@ -102,4 +102,15 @@ export class StackMockProvider {
     return this.http.post(API.VM+API.updateFollowers,JSON.stringify(body));
   }
 
+  public getqID(aID){
+    return this.http.get(API.VM+API.getqID+aID);
+  }
+
+  public getFollowingAcitivites(userID,page){
+    return this.http.get(API.VM+API.getFollowingAcitivites+userID+'/'+page);
+  }
+
+  public deleteQuestionAnswer(postID,type){
+    return this.http.get(API.VM+API.deleteQuestionAnswer+postID+'/'+type);
+  }
 }

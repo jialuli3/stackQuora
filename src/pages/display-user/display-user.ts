@@ -30,7 +30,7 @@ export class DisplayUserPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DisplayUserPage');
-    this.currUserID=API.userID;
+    this.currUserID=this.navParams.get('userID');
     this.mockData.getUserStatus(this.currUserID,1).map(res=>res.json()).subscribe(data=>{
       this.content=data;
       console.log(data);
@@ -43,15 +43,16 @@ export class DisplayUserPage {
       this.followingStatus=data.following_results;
     });
   }*/
+
   displayQuestion(i){
       this.navCtrl.push(DisplayQuestionPage,{
         data:JSON.stringify(this.activities[i].postID),
         question_color: 0,
-        type:this.activities[i].actionType
+        type:this.activities[i].postType
       });
   }
   getActivities(){
-    this.mockData.getActivities(API.userID,2,3,this.page).map(res=>res.json()).subscribe(data=>{
+    this.mockData.getActivities(this.currUserID,2,3,this.page).map(res=>res.json()).subscribe(data=>{
       this.activities=data.recentActivities;
       this.postDetails=data.postDetail;
       this.note=[]

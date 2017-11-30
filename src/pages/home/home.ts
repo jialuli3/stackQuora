@@ -154,7 +154,8 @@ export class HomePage {
   displayQuestion(i){
       this.navCtrl.push(DisplayQuestionPage,{
         data:JSON.stringify(this.contents[i].qID),
-        question_color: this.voted_status[i]
+        question_color: this.voted_status[i],
+        type:API.QUESTION
       });
   }
   askQuestion(){

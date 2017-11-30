@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,Content } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
+import { API } from '../../providers/API';
 /**
  * Generated class for the MyQuestionsAnswersPage page.
  *
@@ -15,15 +16,25 @@ import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 })
 export class MyQuestionsAnswersPage {
   hide_trash_button=false;
-  contents: any;
+  posts:any;
+  activities:any;
   hide_post=[false,false,false,false,false,false,false,false,false,false];
+  page=0;
+  @ViewChild('MyQuestionsAnswersContent') contentArea;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public mockData: StackMockProvider) {
   }
-
+  ionViewWillEnter(){
+    this.contentArea.resize();
+  }
   ionViewDidLoad() {
-    this.mockData.getUserTimeline().subscribe(data=>{
-      this.contents=data.contents;
-      console.log(this.contents)
+    this.getMyQA();
+  }
+  getMyQA(){
+    this.mockData.getActivities(API.userID,API.postType_all,API.actionType_post,this.page).map(res=>res.json()).subscribe(data=>{
+      this.posts=data.postDetail;
+      this.activities=data.recentActivities;
+      console.log(data);
     });
   }
   show_deletion(){
@@ -39,5 +50,9 @@ export class MyQuestionsAnswersPage {
   delete_post(i){
     this.hide_post[i]=true;
     //delete question/answer/API
+    this.mockData.deleteQuestionAnswer(this.posts[i].postID,this.activities[i].postType).subscribe(data=>{
+      console.log("deletion",data);
+      this.getMyQA();
+    });
   }
 }

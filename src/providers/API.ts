@@ -1,6 +1,16 @@
 
 export class API{
   static VM: string="http://fa17-cs411-44.cs.illinois.edu";
+  static QUESTION: number=0;
+  static ANSWER: number=1;
+  static UNFOLLOW: number=1;
+  static FOLLOW: number=0;
+  static postType_all: number=2;
+  static actionType_post: number=0;
+  static actionType_up: number=1;
+  static actionType_down: number=2;
+  static actionType_all: number=3;
+  static getqID: string="/utilities/getqIDfromaID/"
   static getUserTimeline: string="/utilities/userUpdateRandom/";
   static displayQuestionAnswers: string= "/utilities/displayQuestionAnswers/"
   static postQuestion: string="/utilities/post/postQuestion/";
