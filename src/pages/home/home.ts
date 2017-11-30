@@ -25,6 +25,7 @@ export class HomePage {
   upvote_add: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvote_min: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   qIDs=[];
+  ownerIDs=[];
   @ViewChild('myContent') contentArea;
   constructor(public navCtrl: NavController, private mockData: StackMockProvider, public loadingCtrl:LoadingController) {
 
@@ -32,7 +33,6 @@ export class HomePage {
 
   ionViewWillEnter(){
     this.contentArea.resize();
-
   }
   ionViewDidLoad(){
     this.presentLoading()
@@ -52,10 +52,19 @@ export class HomePage {
   }
 
   getFollowingStatus(){
-    this.mockData.getFollowingStatus(API.userID,this.qIDs).map(res=>res.json()).subscribe(data=>{
+    this.mockData.getFollowingStatus(API.userID,this.ownerIDs).map(res=>res.json()).subscribe(data=>{
       this.followingStatus=data.following_results;
       console.log(this.followingStatus)
     });
+  }
+
+  updateFollowers(i,followingType){
+    this.mockData.updateFollowers(API.userID,this.contents[i].owneruserid,String(followingType)).subscribe(data=>{
+      console.log("update followers",data);
+      this.getFollowingStatus();
+    });
+
+
   }
 
   getVotedStatus(){
@@ -66,6 +75,7 @@ export class HomePage {
     this.qIDs=[]
     for (let i in this.contents){
         this.qIDs.push(String(this.contents[i].qID));
+        this.ownerIDs.push(String(this.contents[i].owneruserid));
     }
     this.mockData.getVotedStatus(API.userID,this.qIDs,[]).map(res => res.json()).subscribe(data=>{
       this.voted_status=data.question_voted_status;

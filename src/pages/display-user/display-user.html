@@ -13,7 +13,8 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+<ion-card padding>
   <ion-row>
     <ion-col col-auto>
   <ion-avatar item-start>
@@ -42,7 +43,7 @@
   </ion-row>
   <ion-row>
     <ion-col>
-  Last Login:{{content?.lastLogin}}
+  Last Login: {{content?.lastLogin}}
 </ion-col>
 </ion-row>
 <ion-row>
@@ -50,47 +51,47 @@
 <ion-note>Recent Activities</ion-note>
 </ion-col>
 </ion-row>
-
-  <div *ngFor="let content of contents; let i=index">
-    <div [ngSwitch]="hide_post[i]">
-  <ion-card *ngSwitchCase="false">
-      <ion-card-content>
-        <b>Q: {{content.title}}</b>
-
-          <div  [innerHTML] ="content.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
-
-        </ion-card-content>
-        <ion-item>
-    <ion-row>
+</ion-card>
+<div *ngIf="activities">
+  <div *ngFor="let post of postDetails; let i=index">
+  <ion-card>
+    <ion-item>
+      <ion-note>{{content?.userName}} {{note[i]}}</ion-note>
+    </ion-item>
+      <ion-card-content (click)="displayQuestion(i)">
+          <div [innerHTML] ="post?.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
+      </ion-card-content>
+    <!--    <ion-item>
+  <ion-row>
       <ion-col col-auto *ngFor="let tag of content.tags">
        <button ion-button small outline color='green_l1'>{{tag}}</button>
      </ion-col>
   </ion-row>
-</ion-item>
+</ion-item>-->
     <ion-row>
       <ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>23</div>
+          <div>{{post?.upVotes}}</div>
         </button>
       </ion-col>
       <ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="thumbs-down"></ion-icon>
-          <div>43</div>
+          <div>{{post?.downVotes}}</div>
         </button>
       </ion-col>
       <ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="text"></ion-icon>
-          <div>{{content.comments}}</div>
+          <div>{{post?.comments}}</div>
         </button>
       </ion-col>
       <ion-col col-auto>
-        <ion-note class='note'>{{content.posted_time}}</ion-note>
+        <ion-note class='note'>{{post?.creationDate}}</ion-note>
       </ion-col>
     </ion-row>
   </ion-card>
-  </div>
+</div>
 </div>
 </ion-content>

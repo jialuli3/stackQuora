@@ -78,4 +78,28 @@ export class StackMockProvider {
   public getUserStatus(userID,showActivities){
     return this.http.get(API.VM+API.getUserStatus+userID+'/'+showActivities);
   }
+
+  public getActivities(userID,postType,actionType,page){
+    return this.http.get(API.VM+API.getActivities+userID+'/'+postType+'/'+actionType+'/'+page);
+  }
+
+  public updateUserInfo(userID,userName){
+    let body={
+      userID:userID,
+      userName:userName
+    }
+    console.log(JSON.stringify(body))
+    return this.http.post(API.VM+API.updateUserInfo,JSON.stringify(body));
+  }
+
+  public updateFollowers(userID,targetID,followingType){
+    let body={
+      userID:userID,
+      targetID:targetID,
+      type:followingType
+    }
+    console.log("updateFollowers",body)
+    return this.http.post(API.VM+API.updateFollowers,JSON.stringify(body));
+  }
+
 }

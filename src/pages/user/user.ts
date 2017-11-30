@@ -3,6 +3,9 @@ import { NavController,PopoverController } from 'ionic-angular';
 import { MyQuestionsAnswersPage } from '../my-questions-answers/my-questions-answers';
 import { FollowersFollowingPage } from '../followers-following/followers-following';
 import { PopoverPage } from '../popover/popover';
+import { API } from '../../providers/API';
+import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
+
 @Component({
   selector: 'page-user',
   templateUrl: 'user.html'
@@ -11,9 +14,21 @@ import { PopoverPage } from '../popover/popover';
 
 export class UserPage {
   popover:any;
-  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController) {
+  userInfo:any;
+  constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, public mockData:StackMockProvider) {
 
   }
+
+  ionViewDidLoad(){
+    this.getUserStatus();
+  }
+
+  doRefresh(refresher){
+    this.getUserStatus();
+    refresher.complete();
+
+  }
+
   presentPopover(myEvent) {
     this.popover = this.popoverCtrl.create(PopoverPage);
     this.popover.present({
@@ -21,6 +36,12 @@ export class UserPage {
     });
   }
 
+getUserStatus(){
+  this.mockData.getUserStatus(API.userID,1).map(res=>res.json()).subscribe(data=>{
+    this.userInfo=data;
+    console.log("userInfo",this.userInfo);
+  });
+}
   displayMyQAs(){
    this.navCtrl.push(MyQuestionsAnswersPage)
  }

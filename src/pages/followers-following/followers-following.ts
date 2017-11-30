@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,Content } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { API } from '../../providers/API';
 /**
@@ -17,12 +17,17 @@ import { API } from '../../providers/API';
 export class FollowersFollowingPage {
 
   type:any;
-  UserIDs:any;
+  userIDs:any;
   userStatus:any;
-  followingStatus:any;
+  followingStatus= ["n","n","n","n","n","n","n","n","n","n"];
+  @ViewChild('FollowingContent') contentArea;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public mockData:StackMockProvider) {
   }
 
+  ionViewWillEnter(){
+    this.contentArea.resize();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad FollowersFollowingPage');
     this.type=this.navParams.get('type');
@@ -32,18 +37,24 @@ export class FollowersFollowingPage {
         this.userIDs=data.uIDs;
         this.userStatus=data.userStatus;
         console.log(this.userIDs)
-        this.followingStatus=this.mockData.getFollowingStatus(API.userID,this.userIDs)
+        this.getFollowingStatus();
       });
     }
     else if (this.type==1){
       this.mockData.checkFollowings(API.userID,0,1).map(res => res.json()).subscribe(data=>{
         this.userIDs=data.uIDs;
         this.userStatus=data.userStatus;
-        console.log(this.userIDs)
-        this.followingStatus=this.mockData.getFollowingStatus(API.userID,this.userIDs)
-
+        console.log(data)
+        this.getFollowingStatus();
       });
     }
+  }
+
+  getFollowingStatus(){
+    this.mockData.getFollowingStatus(API.userID,this.userIDs).map(res=>res.json()).subscribe(data=>{
+      this.followingStatus=data.following_results;
+      console.log(this.followingStatus)
+    });
   }
 
 

@@ -16,8 +16,9 @@
 </ion-header>
 
 
-<ion-content padding *ngIf="userIDs">
-  <ion-list *ngFor="let i=index">
+<ion-content padding #FollowingContent>
+  <div *ngIf="userIDs">
+  <ion-list *ngFor="let uID of userIDs;let i=index">
     <ion-item>
   <ion-row>
     <ion-col col-auto>
@@ -26,16 +27,17 @@
   </ion-avatar>
   </ion-col>
   <ion-col col-5 >
-  <h1>{{userIDs[i]}}</h1>
+  <h1>{{userStatus[i].userName}}</h1>
   <p>Reputations:{{userStatus[i].reputation}}</p>
   </ion-col>
   <ion-col col-3>
     <div [ngSwitch]="followingStatus[i]">
-      <button ion-button small outline color='green_l1' *ngSwitchCase=1>UNFOLLOW</button>
-      <button ion-button small outline color='green_l1' *ngSwitchCase=0>FOLLOW</button>
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'y'">UNFOLLOW</button>
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'n'">FOLLOW</button>
   </div>
   </ion-col>
   </ion-row>
   </ion-item>
   </ion-list>
+</div>
 </ion-content>

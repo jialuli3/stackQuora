@@ -17,9 +17,9 @@ import { ChatPage } from '../pages/chat/chat';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = TabsPage;
+  rootPage:any = TabsPage;
   //rootPage:any = ChatPage;
-  rootPage:any = DisplayUserPage;
+  //rootPage:any = DisplayUserPage;
   //rootPage:any = FollowersFollowingPage;
   //rootPage:any = MyQuestionsAnswersPage;
   //rootPage:any= DisplayQuestionPage;

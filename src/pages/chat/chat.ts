@@ -17,7 +17,7 @@ import { Socket } from 'ng-socket-io';
 export class ChatPage {
 
     username: string = 'me';
-    message ='';
+    message: any;
     text_input: string="";
     messages =[];
 
@@ -29,7 +29,7 @@ export class ChatPage {
         //});
       }
 
-      sendMessage() {
+      /*sendMessage() {
         this.message={
           from:this.username,
           text:this.text_input
@@ -43,5 +43,5 @@ export class ChatPage {
 
       ionViewWillLeave(){
         this.socket.disconnect()
-      }
+      }*/
 }

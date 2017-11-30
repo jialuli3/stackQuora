@@ -47,8 +47,8 @@ ASK
     <button *ngSwitchCase="'n'" ion-button small outline color='green_l1'>FOLLOW</button>
 </div>-->
 <div [ngSwitch]="followingStatus[i]">
-  <button ion-button small outline color='green_l1' *ngSwitchCase="'y'">UNFOLLOW</button>
-  <button ion-button small outline color='green_l1' *ngSwitchCase="'n'">FOLLOW</button>
+  <button ion-button small outline color='green_l1' *ngSwitchCase="'y'" (click)="updateFollowers(i,1)">UNFOLLOW</button>
+  <button ion-button small outline color='green_l1' *ngSwitchCase="'n'" (click)="updateFollowers(i,0)">FOLLOW</button>
 </div>
 </ion-col>
 <!--<ion-col col-offset-lg>

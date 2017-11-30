@@ -13,11 +13,14 @@
 </ion-header>
 
 <ion-content class="profile">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card>
     <ion-item>
-      <h2>My name</h2>
-      <p>My score: 1000</p>
-      <p>About: ACE411</p>
+      <h2>{{userInfo?.userName}}</h2>
+      <p>My reputation: {{userInfo?.reputation}}</p>
       <ion-thumbnail item-start>
         <img src='http://lorempixel.com/64/64/'/>
       </ion-thumbnail>
@@ -31,11 +34,11 @@
         </ion-col>
         <ion-col >
           <font class='follow_text' (click)="checkFollowers()">Followers</font><br>
-          <font class="follow" (click)="checkFollowers()">245</font>
+          <font class="follow" (click)="checkFollowers()">{{userInfo?.follower}}</font>
         </ion-col>
         <ion-col>
           <font class='follow_text' (click)="checkFollowings()">Followings</font><br>
-          <font class="follow" (click)="checkFollowings()">200</font>
+          <font class="follow" (click)="checkFollowings()">{{userInfo?.following}}</font>
         </ion-col>
       </ion-row>
     </ion-grid>

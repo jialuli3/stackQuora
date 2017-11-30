@@ -12,6 +12,10 @@ export class API{
   static checkFollowers: string="/utilities/user/followers/";
   static getFollowingStatus: string="/utilities/user/following/checkList";
   static getUserStatus: string="/utilities/user/status/";
+  static getActivities: string="/utilities/user/filteredTimeline/";
+  static getFollowingAcitivites: string="/utilities/user/following/timeline/";
+  static updateUserInfo: string="/utilities/user/updateUserInfo/";
+  static updateFollowers: string="/utilities/user/updateFollowers/";
   //static userID:string="1710730";
   static userID:string="1710728";
   //static userID:string="13";

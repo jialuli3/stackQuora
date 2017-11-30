@@ -21,6 +21,7 @@ export class DisplayQuestionPage {
   answers: any;
   qid: string;
   loader: any;
+  type: string;
   aIDs=[];
   my_answer =[];
   downvoted_min_q=0;
@@ -46,6 +47,7 @@ export class DisplayQuestionPage {
     this.presentLoading();
     console.log('ionViewDidLoad DisplayQuestionPage');
     this.qid=this.navParams.get('data');
+    this.type=this.navParams.get('type');
     this.voted_status_q=this.navParams.get('question_color');
     console.log(this.voted_status_q)
     this.getQuestionAnswer();
@@ -197,7 +199,7 @@ export class DisplayQuestionPage {
 
 
   getQuestionAnswer(){
-    this.mockData.displayQuestionAnswers(this.qid,1).subscribe(data=>{
+    this.mockData.displayQuestionAnswers(this.qid,this.type).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
       this.my_answer=[]

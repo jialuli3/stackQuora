@@ -52,17 +52,18 @@ export class AskQuestionPage {
       //this.presentAlert()
     }
     let body={
-      userID:"1234",
+      userID:API.userID,
       title:this.question,
       body:this.descriptions,
       tags:this.tags_array,
       posted_time:this.date
     };
     //post to url
-    this.http.post(API.VM+API.postQuestion,JSON.stringify(body),{headers:headers}).subscribe(data=>{
+    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    console.log(post_content)
+    this.http.post(API.VM+API.postQuestion,post_content).subscribe(data=>{
         console.log(data);
     });
-    console.log(JSON.stringify(body))
     this.navCtrl.pop()
   }
   saveQuestion(){
