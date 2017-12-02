@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers } from '@angular/http';
+import { Http,Headers,RequestOptions } from '@angular/http';
 import { API } from '../API';
+import { StorageProvider } from '../../providers/storage/storage';
+import { UserLoginPage } from '../../pages/user-login/user-login';
+
 import 'rxjs/add/operator/map';
 
 /*
@@ -11,11 +14,13 @@ import 'rxjs/add/operator/map';
 */
 
 let headers=new Headers();
+let options = new RequestOptions({ headers: headers });
 headers.append('Access-Control-Allow-Origin','*');
 @Injectable()
 export class StackMockProvider {
   public contents: any;
-  constructor(public http: Http) {
+
+  constructor(public http: Http, public storage: StorageProvider) {
     //console.log('Hello StackMockProvider Provider');
   }
   public getUserTimeline(){
@@ -138,5 +143,13 @@ export class StackMockProvider {
     }
     return this.http.post(API.VM+API.forgetPassword,JSON.stringify(body));
 
+  }
+
+  public logout(userID, token){
+    let body={
+      userID:userID,
+      token:token
+    }
+    return this.http.post(API.VM+API.logout,JSON.stringify(body));
   }
 }

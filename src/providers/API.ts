@@ -29,6 +29,7 @@ export class API{
   static signUp: string="/utilities/user/signUp";
   static login: string="/utilities/user/login";
   static forgetPassword: string="utilities/user/forgetPassword";
+  static logout: string="/utilities/user/logout";
   //static userID:string="1710730";
   static userID:string="1710728";
   //static userID:string="13";
