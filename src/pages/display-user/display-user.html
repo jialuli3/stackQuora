@@ -46,11 +46,7 @@
   Last Login: {{content?.lastLogin}}
 </ion-col>
 </ion-row>
-<ion-row>
-  <ion-col>
-<ion-note>Recent Activities</ion-note>
-</ion-col>
-</ion-row>
+
 </ion-card>
 <div *ngIf="activities">
   <div *ngFor="let post of postDetails; let i=index">
@@ -59,6 +55,7 @@
       <ion-note>{{content?.userName}} {{note[i]}}</ion-note>
     </ion-item>
       <ion-card-content (click)="displayQuestion(i)">
+        <b>{{post?.title}}</b>
           <div [innerHTML] ="post?.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
       </ion-card-content>
     <!--    <ion-item>

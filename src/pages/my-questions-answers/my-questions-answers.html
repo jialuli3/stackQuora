@@ -33,7 +33,7 @@
   <div *ngIf="posts">
   <ion-card *ngFor="let post of posts;let i=index">
       <ion-card-content >
-        <b>Q: </b>
+        <b>{{post.title}}</b>
           <div  [innerHTML] ="post.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
         </ion-card-content>
         <ion-item>

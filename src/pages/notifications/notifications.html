@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card  *ngFor="let content of contents; let i=index" >
+  <ion-card  *ngFor="let content of postDetails; let i=index" >
   <ion-item>
     <ion-row>
       <ion-col col-auto>
@@ -15,16 +15,16 @@
       <img src='http://lorempixel.com/64/64/'/>
     </ion-avatar>
   </ion-col>
-  <ion-col col-5>
+  <ion-col col-5 (click)="displayUser(i)">
     <p>{{content.author}}</p>
     <p>reputation: {{content.reputation}}</p>
   </ion-col>
-  <ion-col col-2>
-    <div [ngSwitch]='content.following'>
-      <button *ngSwitchCase="'y'" ion-button small outline color='green_l1'>UNFOLLOW</button>
-      <button *ngSwitchCase="'n'" ion-button small outline color='green_l1'>FOLLOW</button>
+  <!--<ion-col col-2>
+    <<div [ngSwitch]="followingStatus[i]">
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'y'" (click)="updateFollowers(i)">UNFOLLOW</button>
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'n'" (click)="updateFollowers(i)">FOLLOW</button>
   </div>
-  </ion-col>
+</ion-col>-->
   <!--<ion-col col-offset-lg>
     <img src='../assets/imgs/green_circle.png' class='unread'>
   </ion-col>-->
@@ -32,24 +32,23 @@
 
   </ion-item>
     <ion-card-content (click)="displayQuestion(i)">
-      <div [ngSwitch]='content.type'>
+      <!--<div [ngSwitch]='content.type'>
       <ion-note *ngSwitchCase="'Q'">{{content.author}} {{content.activity}} a question.</ion-note>
       <ion-note *ngSwitchCase="'A'">{{content.author}} {{content.activity}} an answer.</ion-note>
-    </div>
-      <b>{{content.type}}: {{content.title}}</b>
-      <p>
-    {{content.body}}
-     </p>
+    </div>-->
+    <ion-item>
+      <ion-note>{{content.author}} {{note[i]}}</ion-note>
+    </ion-item>
+      <b>{{content.title}}</b>
+
+    <div [innerHTML] ="content?.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
       </ion-card-content>
   <ion-grid>
-     <ion-row>
-    <!--  <ion-col col-auto>
-        <p class='tags'>Tags</p>
-      </ion-col>-->
+     <!--<ion-row>
     <ion-col col-auto *ngFor="let tag of content.tags">
      <button ion-button small outline color='green_l1'>{{tag}}</button>
    </ion-col>
-   </ion-row>
+ </ion-row>-->
   <ion-row>
     <ion-col col-2>
       <button (click)="upvoted(i)" [color]="up_buttonColor[i]" ion-button icon-left clear small >
@@ -63,14 +62,8 @@
         <div>{{downvotes_without_user[i]+downvote_min[i]}}</div>
       </button>
     </ion-col>
-    <ion-col col-2>
-      <button color='green_l1' [color]="comment_buttonColor" ion-button icon-left clear small>
-        <ion-icon name="text"></ion-icon>
-        <div>{{content.comments}}</div>
-      </button>
-    </ion-col>
-    <ion-col col-3>
-      <ion-note class='note' >{{content.creationdate}}</ion-note>
+    <ion-col col-auto>
+      <ion-note class='note' >{{content.creationDate}}</ion-note>
     </ion-col>
   </ion-row>
   </ion-grid>
