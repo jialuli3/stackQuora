@@ -13,11 +13,13 @@ import { FollowersFollowingPage } from '../pages/followers-following/followers-f
 import { DisplayUserPage} from '../pages/display-user/display-user';
 import { EditProfilePage} from '../pages/edit-profile/edit-profile';
 import { ChatPage } from '../pages/chat/chat';
+
+import { StorageProvider } from '../providers/storage/storage';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = UserLoginPage;
   //rootPage:any = ChatPage;
   //rootPage:any = DisplayUserPage;
   //rootPage:any = FollowersFollowingPage;
@@ -26,7 +28,13 @@ export class MyApp {
   //rootPage:any = AskQuestionPage;
   //rootPage:any = UserLoginPage;
   //rootPage:any=EditProfilePage;
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage:StorageProvider) {
+    /*this.storage.getKey('isLogged').then(logged=>{
+      if(logged){
+        this.rootPage=HomePage;
+      }
+    });*/
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

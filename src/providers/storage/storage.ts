@@ -16,18 +16,17 @@ export class StorageProvider {
     console.log('Hello StorageProvider Provider');
   }
 
+  getKey(key){
+    return this.storage.get(key);
+  }
+  setKey(key,content){
+    this.storage.set(key,content);
+  }
+
   getQuestion(qid){
     return this.storage.get(qid).then(result=>{
       console.log(result);
       return result;
-    })
-  }
-  setQuestion(qid,content){
-    console.log(qid,content)
-    this.storage.set(qid,content);
-  }
-
-  setID(username,userID){
-    this.storage.set(username,userID);
-  }
+    });
+}
 }

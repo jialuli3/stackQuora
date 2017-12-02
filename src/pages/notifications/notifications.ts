@@ -33,15 +33,23 @@ export class NotificationsPage {
 
   ionViewDidLoad(){
     console.log("loaded");
-    this.mockData.getFollowingAcitivites(API.userID,0).map(res=>res.json()).subscribe(data=>{
-      this.activities=data.recentActivities;
-      this.postDetails=data.postDetail;
-      console.log(data);
-      this.getNote();
-    });
+    this.getFollowingAcitivites()
     //this.initial_voted_status();
   }
 
+    doRefresh(refresher){
+      this.getFollowingAcitivites();
+      refresher.complete();
+
+    }
+    getFollowingAcitivites(){
+      this.mockData.getFollowingAcitivites(API.userID,0).map(res=>res.json()).subscribe(data=>{
+        this.activities=data.recentActivities;
+        this.postDetails=data.postDetail;
+        console.log(data);
+        this.getNote();
+      });
+    }
   /*inital_voted_status(){
     //console.log(this.voted_status)
     for (let i in this.voted_status){

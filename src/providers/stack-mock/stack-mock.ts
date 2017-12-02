@@ -113,4 +113,30 @@ export class StackMockProvider {
   public deleteQuestionAnswer(postID,type){
     return this.http.get(API.VM+API.deleteQuestionAnswer+postID+'/'+type);
   }
+
+  public signUp(email,password,userName){
+    let body={
+      email:email,
+      password:password,
+      userName:userName
+    }
+    return this.http.post(API.VM+API.signUp,JSON.stringify(body));
+  }
+
+  public login(email,password){
+    let body={
+      email:email,
+      password:password
+    }
+    return this.http.post(API.VM+API.login,JSON.stringify(body));
+
+  }
+  public forgetPassword(email,password){
+    let body={
+      email:email,
+      password:password
+    }
+    return this.http.post(API.VM+API.forgetPassword,JSON.stringify(body));
+
+  }
 }

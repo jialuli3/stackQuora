@@ -2,6 +2,8 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,Content } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { API } from '../../providers/API';
+import { DisplayQuestionPage } from '../display-question/display-question';
+
 /**
  * Generated class for the MyQuestionsAnswersPage page.
  *
@@ -35,6 +37,14 @@ export class MyQuestionsAnswersPage {
       this.posts=data.postDetail;
       this.activities=data.recentActivities;
       console.log(data);
+    });
+  }
+
+  displayQuestion(i){
+    this.navCtrl.push(DisplayQuestionPage,{
+      data:JSON.stringify(this.activities[i].postID),
+      question_color: 0,
+      type:this.activities[i].postType
     });
   }
   show_deletion(){

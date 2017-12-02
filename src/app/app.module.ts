@@ -22,7 +22,8 @@ import { DisplayUserPage} from '../pages/display-user/display-user';
 import { PopoverPage } from '../pages/popover/popover';
 import { EditProfilePage} from '../pages/edit-profile/edit-profile';
 import { TenPostsPage} from '../pages/ten-posts/ten-posts';
-import { ChatPage } from '../pages/chat/chat'
+import { ChatPage } from '../pages/chat/chat';
+import { ForgetPasswordPage } from '../pages/forget-password/forget-password';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +49,8 @@ import { AuthProvider } from '../providers/auth/auth';
     PopoverPage,
     EditProfilePage,
     TenPostsPage,
-    ChatPage
+    ChatPage,
+    ForgetPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import { AuthProvider } from '../providers/auth/auth';
     PopoverPage,
     EditProfilePage,
     TenPostsPage,
-    ChatPage
+    ChatPage,
+    ForgetPasswordPage
   ],
   providers: [
     StatusBar,

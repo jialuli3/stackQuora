@@ -16,7 +16,7 @@ export class HomePage {
   contents: any;
   voted_status: any;
   loader:any;
-  followingStatus= ["n","n","n","n","n","n","n","n","n","n"];
+  followingStatus= [];
   upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   up_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
@@ -41,7 +41,7 @@ export class HomePage {
   }
 
   load_content(){
-        this.mockData.getUserTimeline().subscribe(data=>{
+    this.mockData.getUserTimeline().subscribe(data=>{
       console.log(data);
       this.contents=data.contents;
       this.getVotedStatus();
@@ -53,6 +53,7 @@ export class HomePage {
 
   getFollowingStatus(){
     this.mockData.getFollowingStatus(API.userID,this.ownerIDs).map(res=>res.json()).subscribe(data=>{
+      this.followingStatus=[];
       this.followingStatus=data.following_results;
       console.log(this.followingStatus)
     });
@@ -73,6 +74,7 @@ export class HomePage {
     this.up_buttonColor =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
     this.down_buttonColor=['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
     this.qIDs=[]
+    this.ownerIDs=[]
     for (let i in this.contents){
         this.qIDs.push(String(this.contents[i].qID));
         this.ownerIDs.push(String(this.contents[i].owneruserid));

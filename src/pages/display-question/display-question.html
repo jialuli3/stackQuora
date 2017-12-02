@@ -20,9 +20,6 @@
       <h2> {{question?.authorName}}</h2>
       <p>Reputations:{{question?.reputation}}</p>
     </ion-col>
-    <ion-col col-3>
-      <button ion-button small outline color='green_l1'>FOLLOW</button>
-    </ion-col>
     </ion-row>
 
     </ion-item>
@@ -33,9 +30,9 @@
         </ion-card-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-auto *ngFor="let tag of question?.tags">
+      <!--<ion-col col-auto *ngFor="let tag of question?.tags">
        <button ion-button small outline color='green_l1'>{{tag}}</button>
-     </ion-col>
+     </ion-col>-->
   </ion-row>
     <ion-row>
       <ion-col col-2>
@@ -70,9 +67,6 @@
   <ion-col col-5>
     <h2>{{answer?.authorName}}</h2>
     <p>Reputations:{{answer?.reputation}}</p>
-  </ion-col>
-  <ion-col col-3>
-    <button ion-button small color='green_l1'>FOLLOW</button>
   </ion-col>
   </ion-row>
   <ion-note>{{answer?.creationdate}}</ion-note>

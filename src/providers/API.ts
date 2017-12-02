@@ -26,6 +26,9 @@ export class API{
   static getFollowingAcitivites: string="/utilities/user/following/timeline/";
   static updateUserInfo: string="/utilities/user/updateUserInfo/";
   static updateFollowers: string="/utilities/user/updateFollowers/";
+  static signUp: string="/utilities/user/signUp";
+  static login: string="/utilities/user/login";
+  static forgetPassword: string="utilities/user/forgetPassword";
   //static userID:string="1710730";
   static userID:string="1710728";
   //static userID:string="13";
