@@ -16,7 +16,7 @@ import { EditProfilePage} from '../pages/edit-profile/edit-profile';
 import { ChatPage } from '../pages/chat/chat';
 
 import { StorageProvider } from '../providers/storage/storage';
-import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
+import { StackMockProvider } from '../providers/stack-mock/stack-mock';
 
 @Component({
   templateUrl: 'app.html'

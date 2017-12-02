@@ -46,9 +46,9 @@ logout(){
     this.mockData.logout(value[0],value[1]).subscribe(data=>{
       console.log(data)
       this.storage.setKey("isLogged",false);
-      this.storage.setKey("userInfo","");
-      this.storage.setKey("account","");
-      this.navCtrl.setRoot(UserLoginPage);
+      this.storage.setKey("userInfo",["",""])
+      this.storage.setKey("account",["",""]);
+      this.navCtrl.push(UserLoginPage);
       this.showAlert('Successfully log out!')
     },error=>{
       this.showAlert(error._body);

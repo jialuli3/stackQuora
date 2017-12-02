@@ -19,7 +19,6 @@ headers.append('Access-Control-Allow-Origin','*');
 @Injectable()
 export class StackMockProvider {
   public contents: any;
-
   constructor(public http: Http, public storage: StorageProvider) {
     //console.log('Hello StackMockProvider Provider');
   }
@@ -88,10 +87,11 @@ export class StackMockProvider {
     return this.http.get(API.VM+API.getActivities+userID+'/'+postType+'/'+actionType+'/'+page);
   }
 
-  public updateUserInfo(userID,userName){
+  public updateUserInfo(userName){
     let body={
-      userID:userID,
-      userName:userName
+      userID:this.storage.getUserID(),
+      userName:userName,
+      token:this.storage.getToken()
     }
     console.log(JSON.stringify(body))
     return this.http.post(API.VM+API.updateUserInfo,JSON.stringify(body));
@@ -99,9 +99,10 @@ export class StackMockProvider {
 
   public updateFollowers(userID,targetID,followingType){
     let body={
-      userID:userID,
+      userID:this.storage.getUserID(),
       targetID:targetID,
-      type:followingType
+      type:followingType,
+      token:this.storage.getToken()
     }
     console.log("updateFollowers",body)
     return this.http.post(API.VM+API.updateFollowers,JSON.stringify(body));

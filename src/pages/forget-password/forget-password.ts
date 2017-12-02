@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 
 /**
@@ -15,10 +15,11 @@ import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
   templateUrl: 'forget-password.html',
 })
 export class ForgetPasswordPage {
-
+  alert:any;
   email:any;
   password:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider,
+    public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -26,11 +27,22 @@ export class ForgetPasswordPage {
   }
 
   Submit(){
-    this.mockData.forgetPassword(this.email,this.password).map(res=>res.json()).subscribe(data=>{
-
+    this.mockData.forgetPassword(this.email,this.password).subscribe(data=>{
+      this.showAlert("Successfully change password!");
+      this.navCtrl.pop();
+    },error=>{
+      this.showAlert(error);
     });
   }
   Cancel(){
     this.navCtrl.pop();
   }
+  showAlert(alertTitle) {
+   this.alert = this.alertCtrl.create({
+     title:'',
+     subTitle: alertTitle,
+     buttons: ['OK']
+   });
+   this.alert.present();
+ }
 }

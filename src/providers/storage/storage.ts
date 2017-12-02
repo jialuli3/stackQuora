@@ -11,7 +11,8 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class StorageProvider {
-
+  token:any;
+  userID:any;
   constructor(public http: Http, public storage: Storage) {
     console.log('Hello StorageProvider Provider');
   }
@@ -21,8 +22,18 @@ export class StorageProvider {
   }
   setKey(key,content){
     this.storage.set(key,content);
+    if(key=="userInfo"){
+      this.token=content[1];
+      this.userID=content[0];
+    }
+  }
+  getToken(){
+    return this.token;
   }
 
+  getUserID(){
+    return this.userID;
+  }
   getQuestion(qid){
     return this.storage.get(qid).then(result=>{
       console.log(result);

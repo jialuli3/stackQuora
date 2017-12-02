@@ -28,7 +28,7 @@ export class API{
   static updateFollowers: string="/utilities/user/updateFollowers/";
   static signUp: string="/utilities/user/signUp";
   static login: string="/utilities/user/login";
-  static forgetPassword: string="utilities/user/forgetPassword";
+  static forgetPassword: string="/utilities/user/forgetPassword";
   static logout: string="/utilities/user/logout";
   //static userID:string="1710730";
   static userID:string="1710728";

@@ -44,19 +44,18 @@ export class UserLoginPage {
     });
   }
   login(){
-
     this.mockData.login(this.email,this.password).map(res=>res.json()).subscribe(data=>{
       console.log(data);
       this.storage.setKey("isLogged",true);
       this.storage.setKey("userInfo",[data.userID,data.token])
       this.storage.setKey("account",[this.email,this.password]);
       //this.storage.setKey("password",this.password);
-      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.setRoot(TabsPage,{});
     },error=>{
       console.log(error._body);
       this.storage.setKey("isLogged",false);
-      this.storage.setKey("userInfo","")
-      this.storage.setKey("account","");
+      this.storage.setKey("userInfo",["",""])
+      this.storage.setKey("account",["",""]);
       this.showAlert(error._body);
     });
   }
@@ -68,12 +67,13 @@ export class UserLoginPage {
         this.storage.setKey("userID",data.userID);
         this.storage.setKey("token",data.token);
         this.storage.setKey("account",[this.email,this.password]);
+        this.navCtrl.setRoot(TabsPage,{});
+
       },error=>{
         console.log(error._body);
         this.storage.setKey("isLogged",false);
-        this.storage.setKey("userID","");
-        this.storage.setKey("token","");
-        this.storage.setKey("account","");
+        this.storage.setKey("userInfo",["",""])
+        this.storage.setKey("account",["",""]);
         this.showAlert(error._body);
       });
 
@@ -82,7 +82,7 @@ export class UserLoginPage {
       this.showAlert("Missing Username, Email, or Password!");
     }
   }
-    forgetPassword(){
+  forgetPassword(){
     this.navCtrl.push(ForgetPasswordPage);
   }
 

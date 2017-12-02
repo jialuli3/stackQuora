@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
+import { StorageProvider } from '../../providers/storage/storage';
+
 import { API } from '../../providers/API';
 
 
@@ -20,7 +22,8 @@ export class EditProfilePage {
 
   my_name:string="My Name";
   updated_name:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData:StackMockProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData:StackMockProvider,
+  public storage:StorageProvider) {
   }
 
   ionViewDidLoad() {
@@ -28,7 +31,8 @@ export class EditProfilePage {
   }
 
   Submit(){
-    this.mockData.updateUserInfo(API.userID,this.updated_name).subscribe(data=>{
+    console.log(this.userID)
+    this.mockData.updateUserInfo(this.updated_name).subscribe(data=>{
       console.log(data);
     })
     this.navCtrl.pop();
