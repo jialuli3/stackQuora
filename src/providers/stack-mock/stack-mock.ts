@@ -158,19 +158,19 @@ export class StackMockProvider {
   }
 
   public postAnswer(body,parentID){
-    let body={
+    let my_answer={
       userID:this.storage.getUserID(),
       body: body,
       parentID:parentID,
       token:this.storage.getToken()
     };
     //post to url
-    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    let post_content=String("{\"content\":"+JSON.stringify(my_answer)+"}")
     return this.http.post(API.VM+API.postAnswer,post_content)
   }
 
   public postQuestion(title,body,tags,posted_time){
-    let body={
+    let my_question={
       userID:this.storage.getUserID(),
       title:title,
       body:body,
@@ -179,7 +179,7 @@ export class StackMockProvider {
       token:this.storage.getToken()
     };
     //post to url
-    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    let post_content=String("{\"content\":"+JSON.stringify(my_question)+"}")
     console.log(post_content)
     return this.http.post(API.VM+API.postQuestion,post_content);
   }

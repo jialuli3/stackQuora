@@ -31,7 +31,6 @@ export class EditProfilePage {
   }
 
   Submit(){
-    console.log(this.userID)
     this.mockData.updateUserInfo(this.updated_name).subscribe(data=>{
       console.log(data);
     })

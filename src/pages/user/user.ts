@@ -19,6 +19,7 @@ export class UserPage {
   popover:any;
   userInfo:any;
   userID:any;
+  alert:any;
   constructor(public navCtrl: NavController, public alertCtrl:AlertController,public popoverCtrl: PopoverController, public mockData:StackMockProvider, public storage:StorageProvider) {
 
   }
