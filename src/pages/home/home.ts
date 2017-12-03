@@ -4,6 +4,8 @@ import { AskQuestionPage} from '../ask-question/ask-question';
 import { DisplayQuestionPage } from '../display-question/display-question';
 import { SearchPage } from '../search/search';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
+import { StorageProvider} from '../../providers/storage/storage';
+
 import { API } from '../../providers/API';
 
 
@@ -17,6 +19,7 @@ export class HomePage {
   voted_status: any;
   loader:any;
   followingStatus= [];
+  userID:any;
   upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   up_buttonColor: Array<string> =['green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2','green_l2'];
@@ -27,7 +30,7 @@ export class HomePage {
   qIDs=[];
   ownerIDs=[];
   @ViewChild('myContent') contentArea;
-  constructor(public navCtrl: NavController, private mockData: StackMockProvider, public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, private mockData: StackMockProvider, public loadingCtrl:LoadingController, public storage:StorageProvider) {
 
   }
 
@@ -41,6 +44,7 @@ export class HomePage {
   }
 
   load_content(){
+    this.userID=this.storage.getUserID()
     this.mockData.getUserTimeline().subscribe(data=>{
       console.log(data);
       this.contents=data.contents;
@@ -52,7 +56,7 @@ export class HomePage {
   }
 
   getFollowingStatus(){
-    this.mockData.getFollowingStatus(API.userID,this.ownerIDs).map(res=>res.json()).subscribe(data=>{
+    this.mockData.getFollowingStatus(this.userID,this.ownerIDs).map(res=>res.json()).subscribe(data=>{
       this.followingStatus=[];
       this.followingStatus=data.following_results;
       console.log(this.followingStatus)
@@ -60,7 +64,7 @@ export class HomePage {
   }
 
   updateFollowers(i,followingType){
-    this.mockData.updateFollowers(API.userID,this.contents[i].owneruserid,String(followingType)).subscribe(data=>{
+    this.mockData.updateFollowers(this.userID,this.contents[i].owneruserid,String(followingType)).subscribe(data=>{
       console.log("update followers",data);
       this.getFollowingStatus();
     });
@@ -79,7 +83,7 @@ export class HomePage {
         this.qIDs.push(String(this.contents[i].qID));
         this.ownerIDs.push(String(this.contents[i].owneruserid));
     }
-    this.mockData.getVotedStatus(API.userID,this.qIDs,[]).map(res => res.json()).subscribe(data=>{
+    this.mockData.getVotedStatus(this.userID,this.qIDs,[]).map(res => res.json()).subscribe(data=>{
       this.voted_status=data.question_voted_status;
       console.log(this.voted_status)
       for (let i in this.voted_status){
@@ -127,7 +131,7 @@ export class HomePage {
       this.up_buttonColor[i]='green_d3';
       this.down_buttonColor[i]='green_l2'
     }//change from downvote to upvote
-    this.mockData.updateVotedStatus(this.contents[i].qID,0,API.userID,this.voted_status[i]+1);
+    this.mockData.updateVotedStatus(this.contents[i].qID,0,this.userID,this.voted_status[i]+1);
   }
 
   //TO DO: need to update the database
@@ -149,11 +153,12 @@ export class HomePage {
       this.downvote_min[i]=0;
       this.down_buttonColor[i]='green_l2';
     }//deselct downvotes
-    this.mockData.updateVotedStatus(this.contents[i].qID,0,API.userID,this.voted_status[i]+1);
+    this.mockData.updateVotedStatus(this.contents[i].qID,0,this.userID,this.voted_status[i]+1);
 
   }
 
   displayQuestion(i){
+    console.log(this.voted_status)
       this.navCtrl.push(DisplayQuestionPage,{
         data:JSON.stringify(this.contents[i].qID),
         question_color: this.voted_status[i],

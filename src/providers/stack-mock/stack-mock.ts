@@ -54,8 +54,9 @@ export class StackMockProvider {
     //postID: qid or aid
     //postType: 0 for Q, 1 for A
     //votedStatus -1 for downvote, 1 for upvote, 0 for neutral
+    let token=this.storage.getToken()
     console.log(API.VM+API.updateVotedStatus+postID+'/'+postType+'/'+votedStatus)
-    return this.http.get(API.VM+API.updateVotedStatus+postID+'/'+postType+'/'+userID+'/'+votedStatus).subscribe(data=>{
+    return this.http.get(API.VM+API.updateVotedStatus+postID+'/'+postType+'/'+userID+'/'+votedStatus+'/'+token).subscribe(data=>{
     console.log(data)
   });
 
@@ -117,7 +118,9 @@ export class StackMockProvider {
   }
 
   public deleteQuestionAnswer(postID,type){
-    return this.http.get(API.VM+API.deleteQuestionAnswer+postID+'/'+type);
+    let token=this.storage.getToken();
+    let userID=this.storage.getUserID();
+    return this.http.get(API.VM+API.deleteQuestionAnswer+postID+'/'+type+'/'+userID+'/'+token);
   }
 
   public signUp(email,password,userName){
@@ -152,5 +155,32 @@ export class StackMockProvider {
       token:token
     }
     return this.http.post(API.VM+API.logout,JSON.stringify(body));
+  }
+
+  public postAnswer(body,parentID){
+    let body={
+      userID:this.storage.getUserID(),
+      body: body,
+      parentID:parentID,
+      token:this.storage.getToken()
+    };
+    //post to url
+    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    return this.http.post(API.VM+API.postAnswer,post_content)
+  }
+
+  public postQuestion(title,body,tags,posted_time){
+    let body={
+      userID:this.storage.getUserID(),
+      title:title,
+      body:body,
+      tags:tags,
+      posted_time:posted_time,
+      token:this.storage.getToken()
+    };
+    //post to url
+    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
+    console.log(post_content)
+    return this.http.post(API.VM+API.postQuestion,post_content);
   }
 }

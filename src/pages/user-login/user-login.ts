@@ -34,9 +34,9 @@ export class UserLoginPage {
   }
 
   checkLogin(){
-    console.log(this.storage.getKey("account"))
     this.storage.getKey("account").then((value)=>{
-      if(value[0]!=null){
+      console.log(value)
+      if(value[0]!=""){
       this.email=value[0];
       this.password=value[1];
       this.login();
@@ -47,10 +47,10 @@ export class UserLoginPage {
     this.mockData.login(this.email,this.password).map(res=>res.json()).subscribe(data=>{
       console.log(data);
       this.storage.setKey("isLogged",true);
-      this.storage.setKey("userInfo",[data.userID,data.token])
+      this.storage.setKey("userInfo",[data.userID,data.token]);
       this.storage.setKey("account",[this.email,this.password]);
       //this.storage.setKey("password",this.password);
-      this.navCtrl.setRoot(TabsPage,{});
+      this.navCtrl.setRoot(TabsPage);
     },error=>{
       console.log(error._body);
       this.storage.setKey("isLogged",false);
@@ -64,8 +64,7 @@ export class UserLoginPage {
       this.mockData.signUp(this.email,this.password,this.username).map(res=>res.json()).subscribe(data=>{
         console.log(data);
         this.storage.setKey("isLogged",true);
-        this.storage.setKey("userID",data.userID);
-        this.storage.setKey("token",data.token);
+        this.storage.setKey("userInfo",[data.userID,data.token]);
         this.storage.setKey("account",[this.email,this.password]);
         this.navCtrl.setRoot(TabsPage,{});
 

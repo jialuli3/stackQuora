@@ -23,8 +23,8 @@ export class StorageProvider {
   setKey(key,content){
     this.storage.set(key,content);
     if(key=="userInfo"){
-      this.token=content[1];
       this.userID=content[0];
+      this.token=content[1];
     }
   }
   getToken(){

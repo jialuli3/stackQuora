@@ -1,6 +1,8 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,Content } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
+import { StorageProvider} from '../../providers/storage/storage';
+
 import { API } from '../../providers/API';
 import { DisplayQuestionPage } from '../display-question/display-question';
 
@@ -22,9 +24,10 @@ export class MyQuestionsAnswersPage {
   activities:any;
   hide_post=[false,false,false,false,false,false,false,false,false,false];
   page=0;
+  userID:any;
   @ViewChild('MyQuestionsAnswersContent') contentArea;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public mockData: StackMockProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public mockData: StackMockProvider, public storage: StorageProvider) {
   }
   ionViewWillEnter(){
     this.contentArea.resize();
@@ -33,7 +36,8 @@ export class MyQuestionsAnswersPage {
     this.getMyQA();
   }
   getMyQA(){
-    this.mockData.getActivities(API.userID,API.postType_all,API.actionType_post,this.page).map(res=>res.json()).subscribe(data=>{
+    this.userID=this.storage.getUserID()
+    this.mockData.getActivities(this.userID,API.postType_all,API.actionType_post,this.page).map(res=>res.json()).subscribe(data=>{
       this.posts=data.postDetail;
       this.activities=data.recentActivities;
       console.log(data);

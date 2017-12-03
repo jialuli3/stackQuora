@@ -13,7 +13,6 @@ import { EditProfilePage} from '../edit-profile/edit-profile';
   template:`
     <ion-list no-lines>
       <button ion-item (click)="edit()">Edit Profile</button>
-      <button ion-item (click)="logout()">Log out</button>
     </ion-list>
     `
 })

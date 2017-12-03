@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { API } from '../../providers/API';
 import { AlertController } from 'ionic-angular';
 import { Http,Headers } from '@angular/http';
-
+import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
+import { StorageProvider } from '../../providers/storage/storage'
 /**
  * Generated class for the AnswerQuestionPage page.
  *
@@ -21,7 +22,8 @@ export class AnswerQuestionPage {
   descriptions: any;
   date: any;
   parentID: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public http:Http) {
+  userID:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public http:Http, public storage:StorageProvider, public mockData:StackMockProvider) {
   }
 
   ionViewDidLoad() {
@@ -45,19 +47,9 @@ export class AnswerQuestionPage {
       return;
     }
 
-    let body={
-      userID:API.userID,
-      body:this.descriptions,
-      parentID:String(this.parentID)
-    };
-    //post to url
-    //let post_content=String("{\"content\":{\"userID\":\""+API.userID+"\",\"body\":\""+String(this.descriptions)+"\",\"parentID\":\""+String(this.parentID)+"\"}}");
-    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
-    //this.http.post(API.VM+API.postAnswer,post_content,{headers:headers}).subscribe(data=>{
-    this.http.post(API.VM+API.postAnswer,post_content).subscribe(data=>{
-        console.log(data);
+    this.mockData.postAnswer(this.descriptions,String(this.parentID)).subscribe(data=>{
+      console.log(data);
     });
-    console.log(post_content);
     this.presentSubmittedAlert();
     this.navCtrl.pop()
   }

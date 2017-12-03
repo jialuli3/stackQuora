@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
+import { StorageProvider} from '../../providers/storage/storage';
+
 import { AnswerQuestionPage} from '../answer-question/answer-question';
 import { API } from '../../providers/API';
 import { Http,Headers } from '@angular/http';
@@ -22,6 +24,7 @@ export class DisplayQuestionPage {
   qid: string;
   loader: any;
   type: string;
+  userID:any;
   aIDs=[];
   my_answer =[];
   downvoted_min_q=0;
@@ -40,7 +43,7 @@ export class DisplayQuestionPage {
   down_buttonColor=[];
   voted_status=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http, public loadingCtrl:LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http, public loadingCtrl:LoadingController, public storage:StorageProvider) {
   }
 
   ionViewDidLoad() {
@@ -64,7 +67,8 @@ export class DisplayQuestionPage {
     this.downvote_min=[];
     this.up_buttonColor=[];
     this.down_buttonColor=[];
-    this.mockData.getVotedStatus(API.userID,[],this.aIDs).map(res=>res.json()).subscribe(data=>{
+    this.userID=this.storage.getUserID()
+    this.mockData.getVotedStatus(this.userID,[],this.aIDs).map(res=>res.json()).subscribe(data=>{
       console.log(data)
       this.voted_status=data.answer_voted_status;
       for (let i in this.voted_status){
@@ -131,7 +135,7 @@ export class DisplayQuestionPage {
       this.up_buttonColor_q='green_d3';
       this.down_buttonColor_q='green_l2'
     }//change from downvote to upvote
-    this.mockData.updateVotedStatus(this.qid,0,API.userID,this.voted_status_q+1);
+    this.mockData.updateVotedStatus(this.qid,0,this.userID,this.voted_status_q+1);
   }
 
   //TO DO: need to update the database
@@ -153,7 +157,7 @@ export class DisplayQuestionPage {
       this.downvoted_min_q=0;
       this.down_buttonColor_q='green_l2';
     }//deselct downvotes
-    this.mockData.updateVotedStatus(this.qid,0,API.userID,this.voted_status_q+1);
+    this.mockData.updateVotedStatus(this.qid,0,this.userID,this.voted_status_q+1);
 
   }
 
@@ -175,7 +179,7 @@ export class DisplayQuestionPage {
       this.up_buttonColor[i]='green_d3';
       this.down_buttonColor[i]='green_l2'
     }//change from downvote to upvote
-    this.mockData.updateVotedStatus(this.answers[i].aid,1,API.userID,this.voted_status[i]+1);
+    this.mockData.updateVotedStatus(this.answers[i].aid,1,this.userID,this.voted_status[i]+1);
 
   }
   downvoted_a(i){
@@ -196,7 +200,7 @@ export class DisplayQuestionPage {
       this.downvote_min[i]=0;
       this.down_buttonColor[i]='green_l2';
     }//deselct downvotes
-    this.mockData.updateVotedStatus(this.answers[i].aid,1,API.userID,this.voted_status[i]+1);
+    this.mockData.updateVotedStatus(this.answers[i].aid,1,this.userID,this.voted_status[i]+1);
 
   }
 
@@ -211,12 +215,13 @@ export class DisplayQuestionPage {
     this.mockData.displayQuestionAnswers(this.qid,this.type).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
+      console.log(this.question,this.answers)
       this.my_answer=[]
       this.aIDs=[]
       for (let i in this.answers){
         this.aIDs.push(String(this.answers[i].aid));
-        console.log(String(this.answers[i].authorID),API.userID)
-          if(String(this.answers[i].authorID)==API.userID){
+        console.log(String(this.answers[i].authorID),this.userID)
+          if(String(this.answers[i].authorID)==this.userID){
             this.my_answer.push(true);
           }
           else{

@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { Http,Headers } from '@angular/http';
 import { API } from '../../providers/API';
+import { StorageProvider } from '../../providers/storage/storage';
+import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
+
 
 /**
  * Generated class for the AskQuestionPage page.
@@ -24,7 +27,7 @@ export class AskQuestionPage {
   tags:any;
   date:any;
   tags_array:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,public http: Http, public storage:StorageProvider, public mockData:StackMockProvider) {
   }
 
   ionViewDidLoad() {
@@ -51,18 +54,8 @@ export class AskQuestionPage {
       this.tags_array="[]"
       //this.presentAlert()
     }
-    let body={
-      userID:API.userID,
-      title:this.question,
-      body:this.descriptions,
-      tags:this.tags_array,
-      posted_time:this.date
-    };
-    //post to url
-    let post_content=String("{\"content\":"+JSON.stringify(body)+"}")
-    console.log(post_content)
-    this.http.post(API.VM+API.postQuestion,post_content).subscribe(data=>{
-        console.log(data);
+    this.mockData.postQuestion(this.question,this.descriptions,this.tags_array,this.date).subscribe(data=>{
+      console.log(data)
     });
     this.navCtrl.pop()
   }

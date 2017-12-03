@@ -4,6 +4,8 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { DisplayQuestionPage} from '../display-question/display-question';
 import { DisplayUserPage } from '../display-user/display-user';
 import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
+import { StorageProvider } from '../../providers/storage/storage';
+
 import { API } from '../../providers/API';
 @Component({
   selector: 'page-notifications',
@@ -16,6 +18,7 @@ export class NotificationsPage {
   voted_status: any;
   activities:any;
   postDetails:any;
+  userID:any;
   note=[];
   followingStatus=[];
   upvotes_without_user: Array<number> = [0,0,0,0,0,0,0,0,0,0];
@@ -27,7 +30,7 @@ export class NotificationsPage {
   upvote_add: Array<number> = [0,0,0,0,0,0,0,0,0,0];
   downvote_min: Array<number> = [0,0,0,0,0,0,0,0,0,0];
 
-  constructor(public navCtrl: NavController, private mockData: StackMockProvider) {
+  constructor(public navCtrl: NavController, private mockData: StackMockProvider, public storage:StorageProvider) {
 
   }
 
@@ -43,7 +46,8 @@ export class NotificationsPage {
 
     }
     getFollowingAcitivites(){
-      this.mockData.getFollowingAcitivites(API.userID,0).map(res=>res.json()).subscribe(data=>{
+      this.userID=this.storage.getUserID();
+      this.mockData.getFollowingAcitivites(this.userID,0).map(res=>res.json()).subscribe(data=>{
         this.activities=data.recentActivities;
         this.postDetails=data.postDetail;
         console.log(data);

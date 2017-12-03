@@ -18,6 +18,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 export class UserPage {
   popover:any;
   userInfo:any;
+  userID:any;
   constructor(public navCtrl: NavController, public alertCtrl:AlertController,public popoverCtrl: PopoverController, public mockData:StackMockProvider, public storage:StorageProvider) {
 
   }
@@ -57,7 +58,8 @@ logout(){
 }
 
 getUserStatus(){
-  this.mockData.getUserStatus(API.userID,1).map(res=>res.json()).subscribe(data=>{
+  this.userID=this.storage.getUserID();
+  this.mockData.getUserStatus(this.userID,1).map(res=>res.json()).subscribe(data=>{
     this.userInfo=data;
     console.log("userInfo",this.userInfo);
   });
