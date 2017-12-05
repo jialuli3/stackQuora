@@ -14,8 +14,8 @@ import { Http,Headers } from '@angular/http';
  */
 
 @IonicPage({
-  name:'DisplayQuestionPage',
-  defaultHistory:["tabs"]
+  name:'DisplayQuestionPage'
+  //defaultHistory:["tabs"]
 })
 @Component({
   selector: 'page-display-question',

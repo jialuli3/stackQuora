@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform,AlertController,NavController } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { Platform,AlertController,Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -18,17 +18,22 @@ import { SearchPage } from '../pages/search/search';
 
 import { StorageProvider } from '../providers/storage/storage';
 import { StackMockProvider } from '../providers/stack-mock/stack-mock';
+import { API } from '../providers/API';
 import { Deeplinks } from '@ionic-native/deeplinks';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+
   rootPage:any = UserLoginPage;
   //rootPage:any="tabs";
   //rootPage:any = 'DisplayQuestionPage';
   alert:any;
-  //rootPage:any=EditProfilePage;
+  userID:any;
+  token:any;
+  postID:string="27727520";
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public alertCtrl:AlertController, public storage:StorageProvider, private deeplinks:Deeplinks) {
     /*this.storage.getKey('isLogged').then(logged=>{
       if(logged){
@@ -46,16 +51,25 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-      /*this.deeplinks.route({
-        //'/userID':{}
+      this.deeplinks.route({
+        '/':{}
       }).subscribe((match)=>{
-        //this.showMatchAlert(JSON.stringify(match))
+        this.showMatchAlert(JSON.stringify(match))
+        this.userID=match.$args.userID;
+        this.token=match.$args.token;
+        this.postID=match.$args.postID;
+        if(this.userID!="" && this.token!=""){
+          this.storage.setKey("userInfo",[this.userID,this.token]);
+          this.nav.setRoot('tabs')
+          this.nav.push('DisplayQuestionPage',{
+            data:String(this.postID),
+            question_color: 0,
+            type:API.QUESTION
+          });
+        }
       },(nomatch)=>{
-        //this.showAlert(JSON.stringify(nomatch));
-        //this.showAlert(JSON.stringify(nomatch.$link.url));
-       //this.rootPage=TabsPage;
-        //this.navCtrl.push(DisplayQuestionPage);
-      })*/
+        //this.showAlert("Token expired. Needs to login again");
+      })
 
     })
 
