@@ -24,9 +24,9 @@ import { Http,Headers } from '@angular/http';
 export class DisplayQuestionPage {
   question :any;
   answers: any;
-  qid: string="27727520";
+  qid: string;
   loader: any;
-  type: string=String(API.QUESTION);
+  type: string;
   userID:any;
   aIDs=[];
   my_answer =[];
@@ -52,8 +52,8 @@ export class DisplayQuestionPage {
   ionViewDidLoad() {
     this.presentLoading();
     console.log('ionViewDidLoad DisplayQuestionPage');
-    /*this.qid=this.navParams.get('data');
-    this.type=this.navParams.get('type');*/
+    this.qid=this.navParams.get('data');
+    this.type=this.navParams.get('type');
     this.voted_status_q=this.navParams.get('question_color');
     console.log(this.voted_status_q)
     if(this.type==String(API.ANSWER)){
@@ -214,7 +214,7 @@ export class DisplayQuestionPage {
   }
 
   getQuestionAnswer(){
-
+    console.log(this.qid,this.type)
     this.mockData.displayQuestionAnswers(this.qid,this.type).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;

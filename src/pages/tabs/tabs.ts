@@ -6,7 +6,7 @@ import { UserPage } from '../user/user';
 import { HomePage } from '../home/home';
 
 @IonicPage({
-  name:"tabs"
+  name:'tabs'
 })
 @Component({
   templateUrl: 'tabs.html'

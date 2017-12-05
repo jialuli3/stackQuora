@@ -135,7 +135,7 @@ export class NotificationsPage {
   }
 
   displayQuestion(i){
-      this.navCtrl.push(DisplayQuestionPage,{
+      this.navCtrl.push('DisplayQuestionPage',{
         data:JSON.stringify(this.postDetails[i].postID),
         question_color: 0,
         type:this.activities[i].postType

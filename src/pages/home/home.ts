@@ -161,7 +161,7 @@ export class HomePage {
 
   displayQuestion(i){
     console.log(this.voted_status)
-      this.navCtrl.push(DisplayQuestionPage,{
+      this.navCtrl.push('DisplayQuestionPage',{
         data:JSON.stringify(this.contents[i].qID),
         question_color: this.voted_status[i],
         type:API.QUESTION

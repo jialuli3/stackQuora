@@ -24,9 +24,9 @@ import { Deeplinks } from '@ionic-native/deeplinks';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = UserLoginPage;
+  rootPage:any = UserLoginPage;
   //rootPage:any="tabs";
-  rootPage:any = 'DisplayQuestionPage';
+  //rootPage:any = 'DisplayQuestionPage';
   alert:any;
   //rootPage:any=EditProfilePage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public alertCtrl:AlertController, public storage:StorageProvider, private deeplinks:Deeplinks) {

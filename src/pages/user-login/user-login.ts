@@ -50,7 +50,7 @@ export class UserLoginPage {
       this.storage.setKey("userInfo",[data.userID,data.token]);
       this.storage.setKey("account",[this.email,this.password]);
       //this.storage.setKey("password",this.password);
-      this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.setRoot('tabs');
     },error=>{
       console.log(error._body);
       this.storage.setKey("isLogged",false);
@@ -66,7 +66,7 @@ export class UserLoginPage {
         this.storage.setKey("isLogged",true);
         this.storage.setKey("userInfo",[data.userID,data.token]);
         this.storage.setKey("account",[this.email,this.password]);
-        this.navCtrl.setRoot(TabsPage,{});
+        this.navCtrl.setRoot('tabs');
 
       },error=>{
         console.log(error._body);

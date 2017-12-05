@@ -37,14 +37,14 @@ export class SearchPage {
   }
 
   displayRelevantQuestion(i){
-    this.navCtrl.push(DisplayQuestionPage,{
+    this.navCtrl.push('DisplayQuestionPage',{
       data:JSON.stringify(this.relevant[i].qID),
       question_color: 0,
       type:API.QUESTION
     });
   }
   displayRecommendQuestion(i){
-    this.navCtrl.push(DisplayQuestionPage,{
+    this.navCtrl.push('DisplayQuestionPage',{
       data:JSON.stringify(this.recommended[i].qID),
       question_color: 0,
       type:API.QUESTION
