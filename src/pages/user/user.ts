@@ -8,7 +8,6 @@ import { API } from '../../providers/API';
 import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
 import { StorageProvider } from '../../providers/storage/storage';
 
-
 @Component({
   selector: 'page-user',
   templateUrl: 'user.html'

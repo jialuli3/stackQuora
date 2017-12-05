@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { Deeplinks } from '@ionic-native/deeplinks';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -30,6 +31,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StackMockProvider } from '../providers/stack-mock/stack-mock';
 import { StorageProvider } from '../providers/storage/storage';
 import { AuthProvider } from '../providers/auth/auth';
+
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { AuthProvider } from '../providers/auth/auth';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StackMockProvider,
     StorageProvider,
+    Deeplinks,
     AuthProvider
   ]
 })

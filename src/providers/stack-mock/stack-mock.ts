@@ -154,6 +154,7 @@ export class StackMockProvider {
       userID:userID,
       token:token
     }
+    console.log("log out",body);
     return this.http.post(API.VM+API.logout,JSON.stringify(body));
   }
 
@@ -182,5 +183,13 @@ export class StackMockProvider {
     let post_content=String("{\"content\":"+JSON.stringify(my_question)+"}")
     console.log(post_content)
     return this.http.post(API.VM+API.postQuestion,post_content);
+  }
+
+  public search(query){
+    let body={
+      query:query
+    }
+    console.log(JSON.stringify(body))
+    return this.http.post(API.VM+API.search,JSON.stringify(body));
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Socket } from 'ng-socket-io';
+import * as io from 'ng-socket-io';
 
 /**
  * Generated class for the ChatPage page.
@@ -20,13 +20,24 @@ export class ChatPage {
     message: any;
     text_input: string="";
     messages =[];
+    socketHost: string = "http://localhost:3000/";
+    socket:any;
+    chat:any;
+
 
     constructor(
-      public navCtrl: NavController, public navParams: NavParams, public socket:Socket) {
+      public navCtrl: NavController, public navParams: NavParams) {
         //this.username = this.navParams.get('username');
-        //this._chatSubscription = this.db.list('/chat').subscribe( data => {
-          //this.messages = data;
-        //});
+        /*this.socket = io.connect(this.socketHost);
+        this.zone = new NgZone({enableLongStackTrace: false});
+        this.socket.on("chat message", (msg) =>{
+          this.zone.run(() =>{
+            this.messages.push(msg);
+            this.content.scrollToBottom();
+          });
+        });*/
+      //});
+
       }
 
       /*sendMessage() {

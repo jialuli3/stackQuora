@@ -14,6 +14,78 @@
 
 
 <ion-content>
-  <ion-searchbar placeholder="What is your question?" showCancelButton color="green_l2" ></ion-searchbar>
+  <ion-item no-lines>
+  <ion-searchbar placeholder="Search" color="green_l2" [(ngModel)]="query"></ion-searchbar>
+  <button ion-button item-right small outline color='green_l1' (click)="search()">GO</button>
+</ion-item>
 
+
+<div *ngIf="relevant">
+  <ion-item no lines>
+<ion-note>Search results</ion-note>
+</ion-item>
+  <div *ngFor="let post of relevant; let i=index">
+  <ion-card>
+      <ion-card-content (click)="displayRelevantQuestion(i)">
+        <b>{{post?.title}}</b>
+          <div [innerHTML] ="post?.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
+      </ion-card-content>
+    <!--    <ion-item>
+  <ion-row>
+      <ion-col col-auto *ngFor="let tag of content.tags">
+       <button ion-button small outline color='green_l1'>{{tag}}</button>
+     </ion-col>
+  </ion-row>
+</ion-item>-->
+    <ion-row>
+      <ion-col col-2>
+        <button color='green_l1' ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{post?.upvote}}</div>
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button color='green_l1' ion-button icon-left clear small>
+          <ion-icon name="thumbs-down"></ion-icon>
+          <div>{{post?.downvote}}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</div>
+</div>
+<div *ngIf="recommended">
+  <ion-item no lines>
+<ion-note>Our recommended questions for you</ion-note>
+</ion-item>
+  <div *ngFor="let post of recommended; let i=index">
+  <ion-card>
+      <ion-card-content (click)="displayRecommendQuestion(i)">
+        <b>{{post?.title}}</b>
+          <div [innerHTML] ="post?.body.substring(0,200)+'...'" style="white-space: pre-wrap;"></div>
+      </ion-card-content>
+    <!--    <ion-item>
+  <ion-row>
+      <ion-col col-auto *ngFor="let tag of content.tags">
+       <button ion-button small outline color='green_l1'>{{tag}}</button>
+     </ion-col>
+  </ion-row>
+</ion-item>-->
+    <ion-row>
+      <ion-col col-2>
+        <button color='green_l1' ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{post?.upvote}}</div>
+        </button>
+      </ion-col>
+      <ion-col col-2>
+        <button color='green_l1' ion-button icon-left clear small>
+          <ion-icon name="thumbs-down"></ion-icon>
+          <div>{{post?.downvote}}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</div>
+</div>
 </ion-content>

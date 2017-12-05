@@ -13,7 +13,9 @@ import { Http,Headers } from '@angular/http';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  defaultHistory:['user']
+})
 @Component({
   selector: 'page-display-question',
   templateUrl: 'display-question.html',
@@ -68,7 +70,7 @@ export class DisplayQuestionPage {
     this.up_buttonColor=[];
     this.down_buttonColor=[];
     this.userID=this.storage.getUserID()
-    this.mockData.getVotedStatus(this.userID,[],this.aIDs).map(res=>res.json()).subscribe(data=>{
+    this.mockData.getVotedStatus(this.userID,this.qid,this.aIDs).map(res=>res.json()).subscribe(data=>{
       console.log(data)
       this.voted_status=data.answer_voted_status;
       for (let i in this.voted_status){
