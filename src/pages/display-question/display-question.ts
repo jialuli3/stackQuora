@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController,IonicPage } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { StorageProvider} from '../../providers/storage/storage';
 
@@ -14,7 +14,8 @@ import { Http,Headers } from '@angular/http';
  */
 
 @IonicPage({
-  defaultHistory:['user']
+  name:'DisplayQuestionPage',
+  defaultHistory:["tabs"]
 })
 @Component({
   selector: 'page-display-question',
@@ -23,9 +24,9 @@ import { Http,Headers } from '@angular/http';
 export class DisplayQuestionPage {
   question :any;
   answers: any;
-  qid: string;
+  qid: string="27727520";
   loader: any;
-  type: string;
+  type: string=String(API.QUESTION);
   userID:any;
   aIDs=[];
   my_answer =[];
@@ -51,8 +52,8 @@ export class DisplayQuestionPage {
   ionViewDidLoad() {
     this.presentLoading();
     console.log('ionViewDidLoad DisplayQuestionPage');
-    this.qid=this.navParams.get('data');
-    this.type=this.navParams.get('type');
+    /*this.qid=this.navParams.get('data');
+    this.type=this.navParams.get('type');*/
     this.voted_status_q=this.navParams.get('question_color');
     console.log(this.voted_status_q)
     if(this.type==String(API.ANSWER)){

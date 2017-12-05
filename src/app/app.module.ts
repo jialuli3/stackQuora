@@ -8,11 +8,7 @@ import { MyApp } from './app.component';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
-import { NotificationsPage } from '../pages/notifications/notifications';
-import { UserPage } from '../pages/user/user';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { DisplayQuestionPage } from '../pages/display-question/display-question';
 import { AskQuestionPage } from '../pages/ask-question/ask-question';
 import { UserLoginPage } from '../pages/user-login/user-login';
 import { MyQuestionsAnswersPage } from '../pages/my-questions-answers/my-questions-answers';
@@ -36,11 +32,6 @@ import { AuthProvider } from '../providers/auth/auth';
 @NgModule({
   declarations: [
     MyApp,
-    NotificationsPage,
-    UserPage,
-    HomePage,
-    TabsPage,
-    DisplayQuestionPage,
     AskQuestionPage,
     UserLoginPage,
     MyQuestionsAnswersPage,
@@ -66,11 +57,6 @@ import { AuthProvider } from '../providers/auth/auth';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    NotificationsPage,
-    UserPage,
-    HomePage,
-    TabsPage,
-    DisplayQuestionPage,
     AskQuestionPage,
     UserLoginPage,
     MyQuestionsAnswersPage,

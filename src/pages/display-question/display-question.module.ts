@@ -9,5 +9,6 @@ import { DisplayQuestionPage } from './display-question';
   imports: [
     IonicPageModule.forChild(DisplayQuestionPage),
   ],
+  exports:[DisplayQuestionPage]
 })
 export class DisplayQuestionPageModule {}

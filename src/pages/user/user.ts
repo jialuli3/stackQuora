@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,PopoverController,AlertController } from 'ionic-angular';
+import { NavController,PopoverController,AlertController,IonicPage } from 'ionic-angular';
 import { MyQuestionsAnswersPage } from '../my-questions-answers/my-questions-answers';
 import { FollowersFollowingPage } from '../followers-following/followers-following';
 import { UserLoginPage } from '../user-login/user-login';
@@ -8,6 +8,9 @@ import { API } from '../../providers/API';
 import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
 import { StorageProvider } from '../../providers/storage/storage';
 
+@IonicPage({
+  name:"UserPage"
+})
 @Component({
   selector: 'page-user',
   templateUrl: 'user.html'

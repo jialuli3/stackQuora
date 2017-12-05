@@ -7,6 +7,10 @@ import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
 import { StorageProvider } from '../../providers/storage/storage';
 
 import { API } from '../../providers/API';
+
+@IonicPage({
+  name:"NotificationsPage"
+})
 @Component({
   selector: 'page-notifications',
   templateUrl: 'notifications.html',

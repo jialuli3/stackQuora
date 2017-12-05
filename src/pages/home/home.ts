@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Content, LoadingController } from 'ionic-angular';
+import { NavController, Content, LoadingController,IonicPage } from 'ionic-angular';
 import { AskQuestionPage} from '../ask-question/ask-question';
 import { DisplayQuestionPage } from '../display-question/display-question';
 import { SearchPage } from '../search/search';
@@ -8,7 +8,9 @@ import { StorageProvider} from '../../providers/storage/storage';
 
 import { API } from '../../providers/API';
 
-
+@IonicPage({
+  name:"HomePage"
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
