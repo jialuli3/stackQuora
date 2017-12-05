@@ -10,7 +10,6 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { AskQuestionPage } from '../pages/ask-question/ask-question';
-import { UserLoginPage } from '../pages/user-login/user-login';
 import { MyQuestionsAnswersPage } from '../pages/my-questions-answers/my-questions-answers';
 import { AnswerQuestionPage } from '../pages/answer-question/answer-question';
 import { FollowersFollowingPage } from '../pages/followers-following/followers-following';
@@ -33,7 +32,6 @@ import { AuthProvider } from '../providers/auth/auth';
   declarations: [
     MyApp,
     AskQuestionPage,
-    UserLoginPage,
     MyQuestionsAnswersPage,
     AnswerQuestionPage,
     FollowersFollowingPage,
@@ -58,7 +56,6 @@ import { AuthProvider } from '../providers/auth/auth';
   entryComponents: [
     MyApp,
     AskQuestionPage,
-    UserLoginPage,
     MyQuestionsAnswersPage,
     AnswerQuestionPage,
     FollowersFollowingPage,

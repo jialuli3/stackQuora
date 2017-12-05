@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,PopoverController,AlertController,IonicPage } from 'ionic-angular';
+import { NavController,PopoverController,AlertController,IonicPage,App } from 'ionic-angular';
 import { MyQuestionsAnswersPage } from '../my-questions-answers/my-questions-answers';
 import { FollowersFollowingPage } from '../followers-following/followers-following';
 import { UserLoginPage } from '../user-login/user-login';
@@ -22,7 +22,7 @@ export class UserPage {
   userInfo:any;
   userID:any;
   alert:any;
-  constructor(public navCtrl: NavController, public alertCtrl:AlertController,public popoverCtrl: PopoverController, public mockData:StackMockProvider, public storage:StorageProvider) {
+  constructor(private app:App,public navCtrl: NavController, public alertCtrl:AlertController,public popoverCtrl: PopoverController, public mockData:StackMockProvider, public storage:StorageProvider) {
 
   }
 
@@ -52,10 +52,11 @@ logout(){
       this.storage.setKey("isLogged",false);
       this.storage.setKey("userInfo",["",""])
       this.storage.setKey("account",["",""]);
-      this.navCtrl.push(UserLoginPage);
+      //this.navCtrl.push(UserLoginPage);
+      this.app.getRootNav().setRoot("UserLoginPage")
       this.showAlert('Successfully log out!')
     },error=>{
-      this.showAlert(error._body);
+      this.showAlert(error);
     })
   });
 }

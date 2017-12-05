@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AskQuestionPage } from '../pages/ask-question/ask-question';
 import { DisplayQuestionPage } from '../pages/display-question/display-question';
 import { TabsPage } from '../pages/tabs/tabs';
-import { UserLoginPage } from '../pages/user-login/user-login';
 import { UserPage } from '../pages/user/user';
 import { HomePage } from '../pages/home/home';
 import { MyQuestionsAnswersPage} from '../pages/my-questions-answers/my-questions-answers';
@@ -27,7 +26,7 @@ import { Deeplinks } from '@ionic-native/deeplinks';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = UserLoginPage;
+  rootPage:string = "UserLoginPage";
   //rootPage:any="tabs";
   //rootPage:any = 'DisplayQuestionPage';
   alert:any;

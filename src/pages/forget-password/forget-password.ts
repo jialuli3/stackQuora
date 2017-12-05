@@ -28,7 +28,8 @@ export class ForgetPasswordPage {
 
   Submit(){
     this.mockData.forgetPassword(this.email,this.password).subscribe(data=>{
-      this.showAlert("Successfully change password!");
+      console.log(data)
+      this.showAlert("Check your email and confirm the change of password.");
       this.navCtrl.pop();
     },error=>{
       this.showAlert(error);

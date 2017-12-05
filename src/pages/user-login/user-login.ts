@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,App } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { StackMockProvider } from '../../providers/stack-mock/stack-mock';
 import { StorageProvider } from '../../providers/storage/storage';
@@ -14,7 +14,9 @@ import { TabsPage } from '../tabs/tabs';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name:'UserLoginPage'
+})
 @Component({
   selector: 'page-user-login',
   templateUrl: 'user-login.html',
@@ -24,7 +26,7 @@ export class UserLoginPage {
   password:any;
   email:any;
   alert:any;
-  constructor(public navCtrl:NavController, public alertCtrl:AlertController, public navParams: NavParams, public auth: AuthProvider, public storage:StorageProvider,
+  constructor(private app:App,public navCtrl:NavController, public alertCtrl:AlertController, public navParams: NavParams, public auth: AuthProvider, public storage:StorageProvider,
      public mockData:StackMockProvider) {
   }
 
@@ -50,7 +52,7 @@ export class UserLoginPage {
       this.storage.setKey("userInfo",[data.userID,data.token]);
       this.storage.setKey("account",[this.email,this.password]);
       //this.storage.setKey("password",this.password);
-      this.navCtrl.setRoot('tabs');
+      this.app.getRootNav().setRoot('tabs');
     },error=>{
       console.log(error._body);
       this.storage.setKey("isLogged",false);
@@ -66,7 +68,7 @@ export class UserLoginPage {
         this.storage.setKey("isLogged",true);
         this.storage.setKey("userInfo",[data.userID,data.token]);
         this.storage.setKey("account",[this.email,this.password]);
-        this.navCtrl.setRoot('tabs');
+        this.app.getRootNav().setRoot('tabs');
 
       },error=>{
         console.log(error._body);
