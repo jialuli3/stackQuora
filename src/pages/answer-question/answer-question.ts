@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { API } from '../../providers/API';
 import { AlertController } from 'ionic-angular';
@@ -23,9 +23,13 @@ export class AnswerQuestionPage {
   date: any;
   parentID: string;
   userID:any;
+  @ViewChild('AnswerQuestion') contentArea;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public http:Http, public storage:StorageProvider, public mockData:StackMockProvider) {
   }
-
+  ionViewWillEnter(){
+    this.contentArea.resize();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AnswerQuestionPage');
     this.question=this.navParams.get('question');

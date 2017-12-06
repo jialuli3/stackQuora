@@ -54,14 +54,14 @@ export class MyApp {
       this.deeplinks.route({
         '/':{}
       }).subscribe((match)=>{
-        this.showMatchAlert(JSON.stringify(match))
+        //this.showMatchAlert(JSON.stringify(match))
         this.postID=match.$args.postID;
         this.mockData.isLogged().then((res)=>{
-          this.showMatchAlert(String(res));
+          //this.showMatchAlert(String(res));
           if(String(res)=="true"){
             this.userID=this.storage.getUserID();
             this.token=this.storage.getToken();
-            this.showAlert(String(this.userID))
+            //this.showAlert(String(this.userID))
             if(this.postID!="" && this.userID!="" && this.token!=""){
               //this.rootPage="tabs";
               this.nav.push('DisplayQuestionPage',{
@@ -76,7 +76,7 @@ export class MyApp {
           }
         })
         .catch((error)=>{
-          this.showAlert(String(error));
+          //this.showAlert(String(error));
         });
       },(nomatch)=>{
         //this.showAlert(JSON.stringify(nomatch))

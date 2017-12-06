@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController,IonicPage } from 'ionic-angular';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { StorageProvider} from '../../providers/storage/storage';
@@ -45,10 +45,13 @@ export class DisplayQuestionPage {
   up_buttonColor=[];
   down_buttonColor=[];
   voted_status=[];
+  @ViewChild('DisplayQuestion') contentArea;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public http:Http, public loadingCtrl:LoadingController, public storage:StorageProvider) {
   }
-
+  ionViewWillEnter(){
+    this.contentArea.resize();
+  }
   ionViewDidLoad() {
     this.presentLoading();
     console.log('ionViewDidLoad DisplayQuestionPage');
@@ -259,7 +262,7 @@ export class DisplayQuestionPage {
   }
 
   deleteAnswer(i){
-    this.http.get(API.VM+API.deleteQuestionAnswer+this.answers[i].aid+'/'+API.ANSWER).subscribe(data=>{
+    this.mockData.deleteQuestionAnswer(this.answers[i].aid,API.ANSWER).subscribe(data=>{
       console.log("delete",data);
       this.getQuestionAnswer()
     });
