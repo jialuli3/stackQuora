@@ -27,10 +27,10 @@
 
   </ion-col>
   <ion-col col-3>
-    <!--<div [ngSwitch]="following_results[0]">
-      <button ion-button small outline color='green_l1' *ngSwitchCase="'y'">UNFOLLOW</button>
-      <button ion-button small outline color='green_l1' *ngSwitchCase="'n'">FOLLOW</button>
-  </div>-->
+    <div [ngSwitch]="followingStatus">
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'y'" (click)="updateFollowers(1)">UNFOLLOW</button>
+      <button ion-button small outline color='green_l1' *ngSwitchCase="'n'" (click)="updateFollowers(0)">FOLLOW</button>
+    </div>
   </ion-col>
   </ion-row>
   <ion-row>
@@ -78,12 +78,12 @@
           <div>{{post?.downVotes}}</div>
         </button>
       </ion-col>
-      <ion-col col-2>
+      <!--<ion-col col-2>
         <button color='green_l1' ion-button icon-left clear small>
           <ion-icon name="text"></ion-icon>
           <div>{{post?.comments}}</div>
         </button>
-      </ion-col>
+      </ion-col>-->
       <ion-col col-auto>
         <ion-note class='note'>{{post?.creationDate}}</ion-note>
       </ion-col>

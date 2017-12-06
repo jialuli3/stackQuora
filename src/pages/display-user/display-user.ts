@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { API } from '../../providers/API';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { DisplayQuestionPage } from '../display-question/display-question';
+import { StorageProvider} from '../../providers/storage/storage';
 
 /**
  * Generated class for the DisplayUserPage page.
@@ -19,13 +20,14 @@ import { DisplayQuestionPage } from '../display-question/display-question';
 export class DisplayUserPage {
 
   currUserID:any;
+  ownerUserID:any;
   content:any;
   followingStatus:any;
   activities:any;
   postDetails:any;
   page=0;
   note=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mockData: StackMockProvider, public storage:StorageProvider) {
   }
 
   ionViewDidLoad() {
@@ -36,6 +38,7 @@ export class DisplayUserPage {
       console.log(data);
     });
     this.getActivities()
+    this.getFollowingStatus();
   }
 
   /*getFollowingStatus(){
@@ -81,5 +84,22 @@ export class DisplayUserPage {
         this.note.push(" downvoted an answer.")
       }
     }
+    }
+
+    getFollowingStatus(){
+      this.ownerUserID=this.storage.getUserID();
+      console.log(this.ownerUserID,this.currUserID)
+      this.mockData.getFollowingStatus(this.ownerUserID,[this.currUserID]).map(res=>res.json()).subscribe(data=>{
+        this.followingStatus=data.following_results[0];
+        console.log(this.followingStatus)
+      });
+    }
+
+    updateFollowers(followingType){
+      this.mockData.updateFollowers(this.ownerUserID,this.currUserID,String(followingType)).subscribe(data=>{
+        console.log("update followers",data);
+        this.getFollowingStatus();
+      });
+
     }
   }

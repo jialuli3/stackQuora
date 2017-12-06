@@ -32,20 +32,16 @@ ASK
 <ion-card *ngFor="let content of contents; let i=index">
 <ion-item>
   <ion-row>
-    <ion-col col-auto>
+    <ion-col col-auto (click)="displayUser(i)">
   <ion-avatar item-start>
     <img src='http://lorempixel.com/64/64/'/>
   </ion-avatar>
 </ion-col>
 <ion-col col-5>
   <p>{{content.ownerusername}}</p>
-  <p>reputation: {{content.reputation}}</p>
+  <p>reputation: {{content.score}}</p>
 </ion-col>
 <ion-col col-2>
-  <!--<div [ngSwitch]='content.following'>
-    <button *ngSwitchCase="'y'" ion-button small outline color='green_l1'>UNFOLLOW</button>
-    <button *ngSwitchCase="'n'" ion-button small outline color='green_l1'>FOLLOW</button>
-</div>-->
 <div [ngSwitch]="followingStatus[i]">
   <button ion-button small outline color='green_l1' *ngSwitchCase="'y'" (click)="updateFollowers(i,1)">UNFOLLOW</button>
   <button ion-button small outline color='green_l1' *ngSwitchCase="'n'" (click)="updateFollowers(i,0)">FOLLOW</button>

@@ -23,11 +23,11 @@
               <ion-label color="green_l1">Password</ion-label>
               <ion-input type='password' value="" [(ngModel)]="password"></ion-input>
             </ion-item>
-						<button class="bottom" ion-button clear full color="green_d1" (click)="forgetPassword()">
-							Forgot password?</button>
+
 				<button ion-button block outline color="green_d1" (click)="login()">Log in</button>
 				<button ion-button block outline color="green_d1" (click)="signUp()">Sign Up</button>
-
+				<button class="bottom" ion-button clear full color="green_d1" (click)="forgetPassword()">
+					Forgot password?</button>
 				<!--<p>OR</p>
 				<button ion-button icon-left block color="facebook">
 					<ion-icon name="logo-facebook"></ion-icon> Login with facebook

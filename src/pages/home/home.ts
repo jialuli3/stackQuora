@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, Content, LoadingController,IonicPage } from 'ionic-angular';
 import { AskQuestionPage} from '../ask-question/ask-question';
 import { DisplayQuestionPage } from '../display-question/display-question';
+import { DisplayUserPage } from '../display-user/display-user';
 import { SearchPage } from '../search/search';
 import { StackMockProvider} from '../../providers/stack-mock/stack-mock';
 import { StorageProvider} from '../../providers/storage/storage';
@@ -159,6 +160,11 @@ export class HomePage {
 
   }
 
+  displayUser(i){
+    this.navCtrl.push(DisplayUserPage,{
+      userID:this.contents[i].owneruserid
+    })
+  }
   displayQuestion(i){
     console.log(this.voted_status)
       this.navCtrl.push('DisplayQuestionPage',{

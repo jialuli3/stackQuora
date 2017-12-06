@@ -55,11 +55,18 @@ export class DisplayQuestionPage {
     this.qid=this.navParams.get('data');
     this.type=this.navParams.get('type');
     this.voted_status_q=this.navParams.get('question_color');
-    console.log(this.voted_status_q)
+    //console.log(this.voted_status_q)
     if(this.type==String(API.ANSWER)){
-      this.mockData.getqID(this.qid);
+      this.mockData.getqID(this.qid).map(res=>res.json()).subscribe(data=>{
+        console.log("return qid",data)
+        this.qid=data;
+        this.getQuestionAnswer();
+      });
     }
-    this.getQuestionAnswer();
+    else{
+        this.getQuestionAnswer();
+    }
+
 
 
   }
@@ -71,7 +78,7 @@ export class DisplayQuestionPage {
     this.up_buttonColor=[];
     this.down_buttonColor=[];
     this.userID=this.storage.getUserID()
-    this.mockData.getVotedStatus(this.userID,this.qid,this.aIDs).map(res=>res.json()).subscribe(data=>{
+    this.mockData.getVotedStatus(this.userID,[this.qid],this.aIDs).map(res=>res.json()).subscribe(data=>{
       console.log(data)
       this.voted_status=data.answer_voted_status;
       for (let i in this.voted_status){
@@ -215,7 +222,7 @@ export class DisplayQuestionPage {
 
   getQuestionAnswer(){
     console.log(this.qid,this.type)
-    this.mockData.displayQuestionAnswers(this.qid,this.type).subscribe(data=>{
+    this.mockData.displayQuestionAnswers(this.qid,API.QUESTION ).subscribe(data=>{
       this.question=data.question;
       this.answers=data.answers;
       console.log(this.question,this.answers)

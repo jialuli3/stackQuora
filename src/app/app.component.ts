@@ -53,24 +53,12 @@ export class MyApp {
       this.deeplinks.route({
         '/':{}
       }).subscribe((match)=>{
-        //this.showMatchAlert(JSON.stringify(match))
-        /*this.userID=match.$args.userID;
-        this.token=match.$args.token;
-        this.postID=match.$args.postID;
-        if(this.userID!="" && this.token!=""){
-          this.storage.setKey("userInfo",[this.userID,this.token]);
-          this.nav.setRoot('tabs')
-          this.nav.push('DisplayQuestionPage',{
-            data:String(this.postID),
-            question_color: 0,
-            type:API.QUESTION
-          });
-        }*/
+        this.showMatchAlert(JSON.stringify(match))
         this.postID=match.$args.postID;
         this.userID=this.storage.getUserID();
         this.token=this.storage.getToken();
         if(this.postID!="" && this.userID!="" && this.token!=""){
-          //this.nav.setRoot('tabs')
+          //this.rootPage="tabs";
           this.nav.push('DisplayQuestionPage',{
             data:String(this.postID),
             question_color: 0,
@@ -78,7 +66,7 @@ export class MyApp {
           });
         }
       },(nomatch)=>{
-        //this.showAlert("Token expired. Needs to login again");
+        this.showAlert(JSON.stringify(nomatch))
       })
 
     })
