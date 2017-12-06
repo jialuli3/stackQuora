@@ -192,4 +192,14 @@ export class StackMockProvider {
     console.log(JSON.stringify(body))
     return this.http.post(API.VM+API.search,JSON.stringify(body));
   }
+
+  public isLogged(){
+    return new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        let isLogged=this.storage.getKey('isLogged');
+        resolve(isLogged);
+        //reject("false");
+      },1000);
+    });
+  }
 }

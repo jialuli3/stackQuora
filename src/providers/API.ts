@@ -25,6 +25,7 @@ export class API{
   static getActivities: string="/utilities/user/filteredTimeline/";
   static getFollowingAcitivites: string="/utilities/user/following/timeline/";
   static updateUserInfo: string="/utilities/user/updateUserInfo/";
+  //static updateUserInfo: string="/utilities/nameUpdate/";
   static updateFollowers: string="/utilities/user/updateFollowers/";
   static signUp: string="/utilities/user/signUp";
   static login: string="/utilities/user/login";

@@ -33,7 +33,8 @@ export class MyApp {
   token:any;
   postID:string="27727520";
   rootPage:string="UserLoginPage";
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public alertCtrl:AlertController, public storage:StorageProvider, private deeplinks:Deeplinks) {
+  isLogged:any;
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public alertCtrl:AlertController, public storage:StorageProvider, private deeplinks:Deeplinks, public mockData:StackMockProvider) {
     /*this.storage.getKey('isLogged').then(logged=>{
       if(logged){
         this.rootPage=TabsPage;
@@ -53,18 +54,30 @@ export class MyApp {
       this.deeplinks.route({
         '/':{}
       }).subscribe((match)=>{
-        //this.showMatchAlert(JSON.stringify(match))
+        this.showMatchAlert(JSON.stringify(match))
         this.postID=match.$args.postID;
-        this.userID=this.storage.getUserID();
-        this.token=this.storage.getToken();
-        if(this.postID!="" && this.userID!="" && this.token!=""){
-          //this.rootPage="tabs";
-          this.nav.push('DisplayQuestionPage',{
-            data:String(this.postID),
-            question_color: 0,
-            type:API.QUESTION
-          });
-        }
+        this.mockData.isLogged().then((res)=>{
+          this.showMatchAlert(String(res));
+          if(String(res)=="true"){
+            this.userID=this.storage.getUserID();
+            this.token=this.storage.getToken();
+            this.showAlert(String(this.userID))
+            if(this.postID!="" && this.userID!="" && this.token!=""){
+              //this.rootPage="tabs";
+              this.nav.push('DisplayQuestionPage',{
+                data:String(this.postID),
+                question_color: 0,
+                type:API.QUESTION
+              });
+            }
+          }
+          else{
+            this.showAlert(String("You need to log in first."))
+          }
+        })
+        .catch((error)=>{
+          this.showAlert(String(error));
+        });
       },(nomatch)=>{
         //this.showAlert(JSON.stringify(nomatch))
         this.rootPage = "UserLoginPage";
