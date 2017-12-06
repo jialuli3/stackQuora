@@ -26,13 +26,13 @@ import { Deeplinks } from '@ionic-native/deeplinks';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:string = "UserLoginPage";
   //rootPage:any="tabs";
   //rootPage:any = 'DisplayQuestionPage';
   alert:any;
   userID:any;
   token:any;
   postID:string="27727520";
+  rootPage:string="UserLoginPage";
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public alertCtrl:AlertController, public storage:StorageProvider, private deeplinks:Deeplinks) {
     /*this.storage.getKey('isLogged').then(logged=>{
       if(logged){
@@ -53,7 +53,7 @@ export class MyApp {
       this.deeplinks.route({
         '/':{}
       }).subscribe((match)=>{
-        this.showMatchAlert(JSON.stringify(match))
+        //this.showMatchAlert(JSON.stringify(match))
         this.postID=match.$args.postID;
         this.userID=this.storage.getUserID();
         this.token=this.storage.getToken();
@@ -66,7 +66,9 @@ export class MyApp {
           });
         }
       },(nomatch)=>{
-        this.showAlert(JSON.stringify(nomatch))
+        //this.showAlert(JSON.stringify(nomatch))
+        this.rootPage = "UserLoginPage";
+
       })
 
     })

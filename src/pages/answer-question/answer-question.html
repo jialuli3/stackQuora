@@ -24,9 +24,9 @@
     <h2> {{question?.authorName}}</h2>
     <p>Reputations:{{question?.reputation}}</p>
   </ion-col>
-  <ion-col col-3>
+  <!--<ion-col col-3>
     <button ion-button small outline color='green_l1'>FOLLOW</button>
-  </ion-col>
+  </ion-col>-->
   </ion-row>
 
   </ion-item>
@@ -36,11 +36,11 @@
       <div  [innerHTML] ="question?.body" style="white-space: pre-wrap;"></div>
 
       </ion-card-content>
-  <ion-row>
+  <!--<ion-row>
     <ion-col col-auto *ngFor="let tag of question?.tags">
      <button ion-button small outline color='green_l1'>{{tag}}</button>
    </ion-col>
-</ion-row>
+</ion-row>-->
 <ion-item no-lines>
   <ion-label color="green_l1" stacked>Your answer*</ion-label>
 </ion-item>

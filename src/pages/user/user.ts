@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { NavController,PopoverController,AlertController,IonicPage,App } from 'ionic-angular';
 import { MyQuestionsAnswersPage } from '../my-questions-answers/my-questions-answers';
 import { FollowersFollowingPage } from '../followers-following/followers-following';
@@ -22,10 +22,14 @@ export class UserPage {
   userInfo:any;
   userID:any;
   alert:any;
+  @ViewChild('UserContent') contentArea;
+
   constructor(private app:App,public navCtrl: NavController, public alertCtrl:AlertController,public popoverCtrl: PopoverController, public mockData:StackMockProvider, public storage:StorageProvider) {
 
   }
-
+  ionViewWillEnter(){
+    this.contentArea.resize();
+  }
   ionViewDidLoad(){
     this.getUserStatus();
   }
